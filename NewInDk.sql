@@ -25,7 +25,7 @@ CREATE TABLE `User` (
     lastName varchar(50) NOT NULL,
     gender int(2) NOT NULL,
     birthDate DATE NOT NULL,
-    userName varchar(20) NOT NULL,
+    userName varchar(50) NOT NULL,
     email varchar(100) NOT NULL,
     `password` varchar(60) NOT NULL,
     profilePic BLOB NOT NULL,

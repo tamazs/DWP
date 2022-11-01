@@ -1,3 +1,4 @@
+<?php include 'config/conn.php'; ?>
 <?php
     session_start();
 
@@ -185,7 +186,7 @@
                         <ul class="mb-1">
                             <li class="logo d-none d-xl-block d-lg-block"></li>
                             <li><a href="default-settings.html" class="nav-content-bttn open-font h-auto pt-2 pb-2"><i class="font-sm feather-settings me-3 text-grey-500"></i><span>Settings</span></a></li>
-                            <li><a href="default-analytics.html" class="nav-content-bttn open-font h-auto pt-2 pb-2"><i class="font-sm feather-pie-chart me-3 text-grey-500"></i><span>Analytics</span></a></li>
+                            <li><a href="../default-analytics.html" class="nav-content-bttn open-font h-auto pt-2 pb-2"><i class="font-sm feather-pie-chart me-3 text-grey-500"></i><span>Analytics</span></a></li>
                         </ul>
                     </div>
                 </div>

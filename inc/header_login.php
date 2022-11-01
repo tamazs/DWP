@@ -1,3 +1,4 @@
+<?php include 'config/conn.php'; ?>
 <?php
     session_start();
 
@@ -16,7 +17,7 @@
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="images/favicon.png">
     <!-- Custom Stylesheet -->
-    <link rel="stylesheet" href="css/style.css"> 
+    <link rel="stylesheet" href="css/style.css">
 
 
 
