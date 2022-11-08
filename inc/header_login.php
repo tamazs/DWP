@@ -1,4 +1,4 @@
-<?php include 'config/conn.php'; ?>
+<?php include_once 'config/conn.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

@@ -1,5 +1,5 @@
 <?php
-include 'config/conn.php';
+include_once 'config/conn.php';
     $sql = 'SELECT * FROM Post';
     $result = mysqli_query($conn, $sql);
     $post = mysqli_fetch_all($result, MYSQLI_ASSOC);

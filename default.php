@@ -1,6 +1,6 @@
 <?php
 session_start();
-include 'inc/header.php';
+include_once 'inc/header.php';
 
 ?>
         <!-- main content -->
@@ -10,7 +10,7 @@ include 'inc/header.php';
                 <div class="middle-sidebar-left">                   
                 <?php
 
-                include_once 'create_post.php';
+                include 'create_post.php';
 
                 ?>
 
