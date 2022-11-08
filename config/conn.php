@@ -2,7 +2,7 @@
 define('DB_HOST', 'localhost');
 define('DB_USER', 'Tamas');
 define('DB_PASS', '1234');
-define('DB_NAME', 'NewInDkDB');
+define('DB_NAME', 'php_tutorial');
 
 //Create connection
 $conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);

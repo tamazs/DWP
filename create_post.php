@@ -35,8 +35,6 @@ if (isset($_POST['submit'])) {
             $message = '<p style="color: red;">Invalid file type</p>';
         }
 
-    }else {
-        $message = '<p style="color: red;">Please choose a file</p>';
     }
 
     if (empty($textErr)) {

@@ -1,6 +1,7 @@
 <?php
 
-include_once 'header_login.php';
+session_start();
+include_once 'inc/header_login.php';
 
 ?>
         <div class="row">
@@ -9,14 +10,14 @@ include_once 'header_login.php';
                 <div class="card shadow-none border-0 ms-auto me-auto login-card">
                     <div class="card-body rounded-0 text-left">
                         <h2 class="fw-700 display1-size display2-md-size mb-3">Login into <br>your account</h2>
-                        <form>
+                        <form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>">
                             
                             <div class="form-group icon-input mb-3">
                                 <i class="font-sm ti-email text-grey-500 pe-0"></i>
-                                <input type="text" class="style2-input ps-5 form-control text-grey-900 font-xsss fw-600" placeholder="Your Email Address">                        
+                                <input name="email" type="text" class="style2-input ps-5 form-control text-grey-900 font-xsss fw-600" placeholder="Email Address">
                             </div>
                             <div class="form-group icon-input mb-1">
-                                <input type="Password" class="style2-input ps-5 form-control text-grey-900 font-xss ls-3" placeholder="Password">
+                                <input name="password" type="Password" class="style2-input ps-5 form-control text-grey-900 font-xss ls-3" placeholder="Password">
                                 <i class="font-sm ti-lock text-grey-500 pe-0"></i>
                             </div>
                         </form>

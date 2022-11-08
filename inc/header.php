@@ -1,9 +1,4 @@
 <?php include 'config/conn.php'; ?>
-<?php
-    session_start();
-
-
-?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -11,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>DWP</title>
+    <title>NewInDK</title>
 
     <link rel="stylesheet" href="css/themify-icons.css">
     <link rel="stylesheet" href="css/feather.css">
@@ -41,10 +36,10 @@
                 <a href="#" class="me-2 menu-search-icon mob-menu"><i class="feather-search text-grey-900 font-sm btn-round-md bg-greylight"></i></a>
                 <button class="nav-menu me-0 ms-2"></button>
             </div>
-            
+
             <a href="#" class="p-2 text-center ms-auto menu-icon" id="dropdownMenu3" data-bs-toggle="dropdown" aria-expanded="false"><span class="dot-count bg-warning"></span><i class="feather-bell font-xl text-current"></i></a>
             <div class="dropdown-menu dropdown-menu-end p-4 rounded-3 border-0 shadow-lg" aria-labelledby="dropdownMenu3">
-                
+
                 <h4 class="fw-700 font-xss mb-4">Notification</h4>
                 <div class="card bg-transparent-card w-100 border-0 ps-5 mb-3">
                     <img src="https://via.placeholder.com/50x50.png" alt="user" class="w40 position-absolute left-0">
