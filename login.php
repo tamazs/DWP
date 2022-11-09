@@ -60,7 +60,7 @@ if ($stmt = $conn->prepare('SELECT userID, password FROM `User` WHERE userName =
                             </div>
                             <div class="col-sm-12 p-0 text-left">
                                 <input class="form-control text-center style2-input text-white fw-600 bg-dark border-0 p-0 " type="submit" value="Login">
-                                <h6 class="text-grey-500 font-xsss fw-500 mt-0 mb-0 lh-32">Dont have account <a href="register.html" class="fw-700 ms-1">Register</a></h6>
+                                <h6 class="text-grey-500 font-xsss fw-500 mt-0 mb-0 lh-32">Dont have account?<a href="register.php" class="fw-700 ms-1">Register</a></h6>
                             </div>
                         </form>
                          
