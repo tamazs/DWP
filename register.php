@@ -1,17 +1,16 @@
 <?php
 
-session_start();
 include_once 'config/conn.php';
 include_once 'inc/header_login.php';
 
 if (!isset($_POST['firstName'], $_POST['lastName'], $_POST['postalCode'], $_POST['username'], $_POST['password'], $_POST['email'])) {
     // Could not get the data that should have been sent.
-    exit('Please complete the registration form!');
+    echo 'kaka';
 }
 // Make sure the submitted registration values are not empty.
 if (empty($_POST['firstName']) || empty($_POST['lastName']) || empty($_POST['username']) || empty($_POST['postalCode']) || empty($_POST['password']) || empty($_POST['email'])) {
     // One or more values are empty.
-    exit('Please complete the registration form');
+    echo 'poopoo';
 }
 
 // We need to check if the account with that username exists.

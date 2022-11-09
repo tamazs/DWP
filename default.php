@@ -1,6 +1,8 @@
 <?php
 session_start();
 include_once 'inc/header.php';
+include_once 'config/userAuth.php';
+
 
 ?>
         <!-- main content -->

@@ -1,5 +1,3 @@
-<?php include_once 'config/conn.php'; ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
