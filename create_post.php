@@ -1,4 +1,5 @@
 <?php
+include_once 'config/conn.php';
 $text =  '';
 $textErr = '';
 
@@ -55,7 +56,6 @@ if (isset($_POST['submit'])) {
 
 <form class="card w-100 shadow-xss rounded-xxl border-0 ps-4 pt-4 pe-4 pb-3 mb-3" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" method="POST" enctype="multipart/form-data">
     <div class="card-body p-0 mt-3 position-relative">
-        <figure class="avatar position-absolute ms-2 mt-1 top-5"><img src="https://via.placeholder.com/50x50.png" alt="image" class="shadow-sm rounded-circle w30"></figure>
         <textarea name="text" value="<?php echo (isset($text)) ? $text: '' ?>" class="h100 bor-0 w-100 rounded-xxl p-2 ps-5 font-xssss text-grey-500 fw-500 border-light-md theme-dark-bg form-control <?php echo !$textErr ?:
             'is-invalid'; ?>" cols="30" rows="10" placeholder="What's on your mind?"></textarea>
         <div id="validationServerFeedback" class="invalid-feedback">

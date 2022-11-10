@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="css/themify-icons.css">
     <link rel="stylesheet" href="css/feather.css">
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/fav64.ico">
     <!-- Custom Stylesheet -->
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/emoji.css">
@@ -18,7 +18,7 @@
 
 </head>
 
-<body class="color-theme-blue mont-font">
+<body class="color-theme-red mont-font">
 
     <div class="preloader"></div>
 
@@ -51,7 +51,7 @@
                         </li>
                         <li>
                             <label class="item-radio item-content">
-                                <input type="radio" name="color-radio" value="blue" checked=""><i class="ti-check"></i>
+                                <input type="radio" name="color-radio" value="blue"><i class="ti-check"></i>
                                 <span class="circle-color bg-blue" style="background-color: #132977;"></span>
                             </label>
                         </li>
@@ -121,9 +121,6 @@
                     
                 </div>
             </div>
-            
-
-            <a href="default-settings.php" class="p-2 text-center ms-3 position-relative menu-icon cursor-pointer"><img src="https://via.placeholder.com/50x50.png" alt="user" class="w40 mt--1"></a>
             </div>
             
         </div>

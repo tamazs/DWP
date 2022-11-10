@@ -25,11 +25,11 @@ if ($stmt = $conn->prepare('SELECT * FROM `User` WHERE userName = ?')) {
         echo 'Username exists, please choose another!';
     } else {
         // Username doesnt exists, insert new account
-        if ($stmt = $conn->prepare('INSERT INTO `User` (firstName, lastName, userName, password, roleID, postalCode, email) VALUES (?, ?, ?, ?, ?, ?, ?)')) {
+        if ($stmt = $conn->prepare('INSERT INTO `User` (firstName, lastName, userName, password, roleID, postalCode, email, origin) VALUES (?, ?, ?, ?, ?, ?, ?, ?)')) {
             // We do not want to expose passwords in our database, so hash the password and use password_verify when a user logs in.
             $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
             $roleID = '1';
-            $stmt->bind_param('sssssss', $_POST['firstName'], $_POST['lastName'], $_POST['username'], $password, $roleID, $_POST['postalCode'], $_POST['email']);
+            $stmt->bind_param('ssssssss', $_POST['firstName'], $_POST['lastName'], $_POST['username'], $password, $roleID, $_POST['postalCode'], $_POST['email'], $_POST['origin']);
             $stmt->execute();
             echo 'You have successfully registered, you can now login!';
         } else {
@@ -67,6 +67,10 @@ $conn->close();
                             </div>
                             <div class="form-group icon-input mb-3">
                                 <input type="number" name="postalCode" class="style2-input ps-5 form-control text-grey-900 font-xss ls-3" placeholder="Postal code">
+                                <i class="font-sm ti-lock text-grey-500 pe-0"></i>
+                            </div>
+                            <div class="form-group icon-input mb-3">
+                                <input type="text" name="origin" class="style2-input ps-5 form-control text-grey-900 font-xss ls-3" placeholder="Ethnicity">
                                 <i class="font-sm ti-lock text-grey-500 pe-0"></i>
                             </div>
                             <div class="form-group icon-input mb-3">

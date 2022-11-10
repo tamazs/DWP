@@ -1,10 +1,10 @@
 <?php
 
-include_once 'header.php';
+include_once 'inc/header.php';
 
 ?>
         <!-- main content -->
-        <div class="main-content right-chat-active">
+<div class="main-content right-chat-active">
             
             <div class="middle-sidebar-bottom">
                 <div class="middle-sidebar-left">
@@ -63,6 +63,7 @@ include_once 'header.php';
                  
             </div>            
         </div>
+</div>
         <!-- main content -->
     <script src="js/plugin.js"></script>
     <script src="js/lightbox.js"></script>

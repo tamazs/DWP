@@ -52,7 +52,7 @@ if ($stmt = $conn->prepare('SELECT userID, password FROM `User` WHERE userName =
                             
                             <div class="form-group icon-input mb-3">
                                 <i class="font-sm ti-email text-grey-500 pe-0"></i>
-                                <input name="username" type="text" class="style2-input ps-5 form-control text-grey-900 font-xsss fw-600" placeholder="Email Address">
+                                <input name="username" type="text" class="style2-input ps-5 form-control text-grey-900 font-xsss fw-600" placeholder="Username">
                             </div>
                             <div class="form-group icon-input mb-1">
                                 <input name="password" type="Password" class="style2-input ps-5 form-control text-grey-900 font-xss ls-3" placeholder="Password">
