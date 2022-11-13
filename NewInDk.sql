@@ -26,6 +26,28 @@ CREATE TABLE `Location` (
     city varchar(50) NOT NULL
 );
 
+INSERT INTO `Location` (
+    postalCode,
+    city
+)
+VALUES
+    (
+        6700,
+        'Esbjerg'
+    ),
+    (
+        8000,
+        'Aarhus'
+    ),
+    (
+        1050,
+        'Copenhagen'
+    ),
+    (
+        6400,
+        'Sonderborg'
+    );
+
 CREATE TABLE `Type` (
     typeID int(4) NOT NULL PRIMARY KEY,
      `type` varchar(255) NOT NULL
