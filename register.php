@@ -82,7 +82,7 @@ $conn->close();
                             </div>
                             <div class="col-sm-12 p-0 text-left">
                                 <input class="form-control text-center style2-input text-white fw-600 bg-dark border-0 p-0 " type="submit" value="Register" name="reg">
-                                <h6 class="text-grey-500 font-xsss fw-500 mt-0 mb-0 lh-32">Already have account <a href="login.php" class="fw-700 ms-1">Login</a></h6>
+                                <h6 class="text-grey-500 font-xsss fw-500 mt-0 mb-0 lh-32">Already have account <a href="loginer.php" class="fw-700 ms-1">Login</a></h6>
                             </div>
 
                         </form>

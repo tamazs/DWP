@@ -1,15 +1,16 @@
 <?php
-
+session_start();
 include_once 'config/userAuth.php';
-include_once 'inc/header.php';
-
 if($_GET['logout']){logOut();}
 
 function logOut() {
     session_destroy();
 // Redirect to the login page:
-    header('Location: login.php');
+    header('Location: loginer.php');
 }
+
+include_once 'inc/header.php';
+
 
 ?>
         <!-- main content -->
