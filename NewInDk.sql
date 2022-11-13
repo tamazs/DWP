@@ -3,17 +3,77 @@ CREATE DATABASE NewInDkDB;
 USE NewInDkDB;
 
 CREATE TABLE `Role` (
-    roleID int(2) NOT NULL PRIMARY KEY
+    roleID int(2) NOT NULL PRIMARY KEY,
+    `role` varchar(255) NOT NULL
 );
+
+INSERT INTO `Role` (
+    roleID,
+    `role`
+)
+VALUES
+    (
+        1,
+        'user'
+    ),
+    (
+        2,
+        'admin'
+    );
 
 CREATE TABLE `Location` (
     postalCode int(4) NOT NULL PRIMARY KEY,
     city varchar(50) NOT NULL
 );
 
+INSERT INTO `Location` (
+    postalCode,
+    city
+)
+VALUES
+    (
+        6700,
+        'Esbjerg'
+    ),
+    (
+        8000,
+        'Aarhus'
+    ),
+    (
+        1050,
+        'Copenhagen'
+    ),
+    (
+        6400,
+        'Sonderborg'
+    );
+
 CREATE TABLE `Type` (
-    typeID int(4) NOT NULL PRIMARY KEY
+    typeID int(4) NOT NULL PRIMARY KEY,
+     `type` varchar(255) NOT NULL
 );
+
+INSERT INTO `Type` (
+    typeID,
+    `type`
+)
+VALUES
+    (
+        1,
+        'post'
+    ),
+    (
+        2,
+        'comment'
+    ),
+    (
+        3,
+        'question'
+    ),
+    (
+        4,
+        'answer'
+    );
 
 CREATE TABLE Media (
     mediaID int AUTO_INCREMENT NOT NULL PRIMARY KEY
@@ -23,12 +83,9 @@ CREATE TABLE `User` (
     userID int AUTO_INCREMENT NOT NULL PRIMARY KEY,
     firstName varchar(50) NOT NULL,
     lastName varchar(50) NOT NULL,
-    gender int(2) NOT NULL,
-    birthDate DATE NOT NULL,
-    userName varchar(20) NOT NULL,
+    userName varchar(50) NOT NULL,
     email varchar(100) NOT NULL,
     `password` varchar(60) NOT NULL,
-    profilePic BLOB NOT NULL,
     roleID int(2) NOT NULL,
     FOREIGN KEY (roleID) REFERENCES Role (roleID),
     postalCode int(4) NOT NULL,
