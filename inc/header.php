@@ -1,3 +1,13 @@
+<?php
+if($_GET['logout']){logOut();}
+
+function logOut() {
+    session_destroy();
+// Redirect to the login page:
+    header('Location: loginer.php');
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -121,6 +131,7 @@
                     
                 </div>
             </div>
+                <a class="p-2 text-center ms-3 position-relative menu-icon cursor-pointer" href="#" onClick='location.href="?logout=1"'><i class="feather-log-out d-inline-block font-xl text-current"></i></a>
             </div>
             
         </div>
