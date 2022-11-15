@@ -3,35 +3,39 @@
 include_once 'config/conn.php';
 include_once 'inc/header_login.php';
 
-if (!isset($_POST['firstName'], $_POST['lastName'], $_POST['postalCode'], $_POST['username'], $_POST['password'], $_POST['email'])) {
-    // Could not get the data that should have been sent.
-    echo 'kaka';
-}
+$firstName = filter_input(INPUT_POST, 'firstName', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+$lastName = filter_input(INPUT_POST, 'lastName', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+$postalCode = filter_input(INPUT_POST, 'postalCode', FILTER_SANITIZE_NUMBER_INT);
+$userName = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+$origin = filter_input(INPUT_POST, 'origin', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+$password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+$email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
+
 // Make sure the submitted registration values are not empty.
-if (empty($_POST['firstName']) || empty($_POST['lastName']) || empty($_POST['username']) || empty($_POST['postalCode']) || empty($_POST['password']) || empty($_POST['email'])) {
+if (empty($firstName) || empty($lastName) || empty($userName) || empty($postalCode) || empty($password) || empty($email)) {
     // One or more values are empty.
-    echo 'poopoo';
+    $msg = 'Please fill every field out!';
 }
 
 // We need to check if the account with that username exists.
 if ($stmt = $conn->prepare('SELECT * FROM `User` WHERE userName = ?')) {
     // Bind parameters (s = string, i = int, b = blob, etc), hash the password using the PHP password_hash function.
-    $stmt->bind_param('s', $_POST['username']);
+    $stmt->bind_param('s', $userName);
     $stmt->execute();
     $stmt->store_result();
     // Store the result so we can check if the account exists in the database.
     if ($stmt->num_rows > 0) {
         // Username already exists
-        echo 'Username exists, please choose another!';
+        $msg = 'Username exists, please choose another!';
     } else {
         // Username doesnt exists, insert new account
         if ($stmt = $conn->prepare('INSERT INTO `User` (firstName, lastName, userName, password, roleID, postalCode, email, origin) VALUES (?, ?, ?, ?, ?, ?, ?, ?)')) {
             // We do not want to expose passwords in our database, so hash the password and use password_verify when a user logs in.
-            $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+            $password_hashed = password_hash($password, PASSWORD_DEFAULT);
             $roleID = '1';
-            $stmt->bind_param('ssssssss', $_POST['firstName'], $_POST['lastName'], $_POST['username'], $password, $roleID, $_POST['postalCode'], $_POST['email'], $_POST['origin']);
+            $stmt->bind_param('ssssssss', $firstName, $lastName, $userName, $password_hashed, $roleID, $postalCode, $email, $origin);
             $stmt->execute();
-            echo 'You have successfully registered, you can now login!';
+            $msg = 'You have successfully registered, you can now login!';
         } else {
             // Something is wrong with the sql statement, check to make sure accounts table exists with all 3 fields.
             echo 'Could not prepare statement!';
@@ -51,7 +55,7 @@ $conn->close();
                     <div class="card-body rounded-0 text-left">
                         <h2 class="fw-700 display1-size display2-md-size mb-4">Create <br>your account</h2>                        
                         <form method="post" autocomplete="off" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>">
-                            
+                            <p><?php echo $msg;?></p>
                             <div class="form-group icon-input mb-3">
                                 <i class="font-sm ti-user text-grey-500 pe-0"></i>
                                 <input type="text" name="firstName" class="style2-input ps-5 form-control text-grey-900 font-xsss fw-600" placeholder="First Name">
