@@ -2,6 +2,7 @@
 include_once 'config/conn.php';
 $text =  '';
 $textErr = '';
+echo $_SESSION['id'];
 
 //Form submit
 if (isset($_POST['submit'])) {

@@ -10,6 +10,7 @@ $userName = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_FULL_SPECIAL_CH
 $origin = filter_input(INPUT_POST, 'origin', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
+$msg = '';
 
 // Make sure the submitted registration values are not empty.
 if (empty($firstName) || empty($lastName) || empty($userName) || empty($postalCode) || empty($password) || empty($email)) {
