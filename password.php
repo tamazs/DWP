@@ -68,7 +68,6 @@ include_once 'inc/header.php';
                                     </form>
                             </div>
                         </div>
-                        <!-- <div class="card w-100 border-0 p-2"></div> -->
                     </div>
                 </div>
                  
