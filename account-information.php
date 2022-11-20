@@ -2,8 +2,6 @@
 session_start();
 include_once 'config/conn.php';
 include_once 'config/userAuth.php';
-include_once 'inc/header.php';
-
 $userID = $_SESSION['id'];
 $query = mysqli_query($conn, "SELECT * FROM `User` WHERE userID='$userID'");
 $data = mysqli_fetch_array($query);
@@ -18,17 +16,16 @@ if (isset($_POST['update'])) {
     $description = filter_input(INPUT_POST, 'description', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
     $sql = "UPDATE `User` SET `userName`='$userName', `firstName`='$firstName', `lastName`='$lastName', `email`='$email', `description`='$description', `postalCode`='$postalCode', `origin`='$origin' WHERE userID='$userID'";
-    echo $sql;
     $edit = mysqli_query($conn, $sql);
 
     if ($edit) {
         mysqli_close($conn);
-        header('Location: default_settings.php');
-        exit;
+        header('Location: default-settings.php');
     } else {
         echo mysqli_error($conn);
     }
 }
+include_once 'inc/header.php';
 ?>
         <!-- main content -->
         <div class="main-content bg-lightblue theme-dark-bg right-chat-active">
@@ -111,7 +108,6 @@ if (isset($_POST['update'])) {
                             </form>
                             </div>
                         </div>
-                        <!-- <div class="card w-100 border-0 p-2"></div> -->
                     </div>
                 </div>
                  

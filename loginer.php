@@ -1,9 +1,8 @@
 <?php
+include_once 'config/conn.php';
 $userName = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
-
-$conn = new mysqli("localhost", "Tamas", "1234", "NewInDkDB");
 // Now we check if the data from the login form was submitted, isset() will check if the data exists.
 $password_hashed = password_hash($password, PASSWORD_DEFAULT);
 
