@@ -1,7 +1,7 @@
 <?php
 
-include_once 'config/conn.php';
-include_once 'inc/header_login.php';
+include_once '../config/conn.php';
+include_once '../inc/header_login.php';
 
 $firstName = filter_input(INPUT_POST, 'firstName', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 $lastName = filter_input(INPUT_POST, 'lastName', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
@@ -99,8 +99,8 @@ $conn->close();
             </div>
         </div>
     </div>
-    <script src="js/plugin.js"></script>
-    <script src="js/scripts.js"></script>
+    <script src="../js/plugin.js"></script>
+    <script src="../js/scripts.js"></script>
     
 </body>
 

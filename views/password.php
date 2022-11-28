@@ -1,7 +1,7 @@
 <?php
 session_start();
-include_once 'config/conn.php';
-include_once 'config/userAuth.php';
+include_once '../config/conn.php';
+include_once '../config/userAuth.php';
 $userID = $_SESSION['id'];
 $query = mysqli_query($conn, "SELECT password FROM `User` WHERE userID='$userID'");
 $data = mysqli_fetch_array($query);
@@ -26,7 +26,7 @@ if (isset($_POST['update'])) {
             echo 'The two new passwords dont match';
         }
 }
-include_once 'inc/header.php';
+include_once '../inc/header.php';
 
 ?>
         <!-- main content -->
@@ -78,8 +78,8 @@ include_once 'inc/header.php';
     </div> 
 
 
-    <script src="js/plugin.js"></script>
-    <script src="js/scripts.js"></script>
+    <script src="../js/plugin.js"></script>
+    <script src="../js/scripts.js"></script>
     
 </body>
 

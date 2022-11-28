@@ -101,6 +101,22 @@ CREATE TABLE Post (
     FOREIGN KEY (typeID) REFERENCES Type (typeID),
     mediaID int NULL,
     FOREIGN KEY (mediaID) REFERENCES Media (mediaID),
+    userID int NOT NULL,
+    FOREIGN KEY (userID) REFERENCES User (userID),
+    userName varchar(50) NOT NULL,
+    `text` varchar(255) NOT NULL,
+    `timeStamp` TIMESTAMP
+);
+
+CREATE TABLE Comment (
+    commentID int AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    typeID int(4) NOT NULL,
+    FOREIGN KEY (typeID) REFERENCES Type (typeID),
+    postID int NOT NULL,
+    FOREIGN KEY (postID) REFERENCES Post (postID),
+    userID int NOT NULL,
+    FOREIGN KEY (userID) REFERENCES User (userID),
+    userName varchar(50) NOT NULL,
     `text` varchar(255) NOT NULL,
     `timeStamp` TIMESTAMP
 );

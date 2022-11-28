@@ -1,7 +1,7 @@
 <?php
 session_start();
-include_once 'config/conn.php';
-include_once 'config/userAuth.php';
+include_once '../config/conn.php';
+include_once '../config/userAuth.php';
 $userID = $_SESSION['id'];
 $query = mysqli_query($conn, "SELECT * FROM `User` WHERE userID='$userID'");
 $data = mysqli_fetch_array($query);
@@ -25,7 +25,7 @@ if (isset($_POST['update'])) {
         echo mysqli_error($conn);
     }
 }
-include_once 'inc/header.php';
+include_once '../inc/header.php';
 ?>
         <!-- main content -->
         <div class="main-content bg-lightblue theme-dark-bg right-chat-active">
@@ -114,8 +114,8 @@ include_once 'inc/header.php';
             </div>            
         </div>
         <!-- main content -->
-    <script src="js/plugin.js"></script>
-    <script src="js/scripts.js"></script>
+    <script src="../js/plugin.js"></script>
+    <script src="../js/scripts.js"></script>
     
 </body>
 

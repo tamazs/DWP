@@ -1,15 +1,16 @@
 <?php
 session_start();
-include_once 'config/conn.php';
-include_once 'config/userAuth.php';
+include_once '../config/conn.php';
+include_once '../config/userAuth.php';
 $userID = $_SESSION['id'];
+$userName = $_SESSION['username'];
 $query = mysqli_query($conn, "SELECT * FROM `User` WHERE userID='$userID'");
 $data = mysqli_fetch_array($query);
 
-$sql = 'SELECT * FROM Post';
+$sql = "SELECT * FROM Post WHERE userName='$userName'";
 $result = mysqli_query($conn, $sql);
 $post = mysqli_fetch_all($result, MYSQLI_ASSOC);
-include_once 'inc/header.php';
+include_once '../inc/header.php';
 
 ?>
         <!-- main content -->
@@ -73,9 +74,9 @@ include_once 'inc/header.php';
         </div>
 </div>
         <!-- main content -->
-    <script src="js/plugin.js"></script>
-    <script src="js/lightbox.js"></script>
-    <script src="js/scripts.js"></script>
+    <script src="../js/plugin.js"></script>
+    <script src="../js/lightbox.js"></script>
+    <script src="../js/scripts.js"></script>
     
 </body>
 

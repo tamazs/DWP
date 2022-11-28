@@ -1,5 +1,5 @@
 <?php
-include_once 'config/conn.php';
+include_once '../config/conn.php';
 $userName = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
@@ -40,7 +40,7 @@ if (isset($_POST['submit'])) {
         $stmt->close();
     }
 }
-include_once 'inc/header_login.php';
+include_once '../inc/header_login.php';
 ?>
 
 
@@ -68,7 +68,7 @@ include_once 'inc/header_login.php';
     </div>
 </div>
 </div>
-    <script src="js/plugin.js"></script>
-    <script src="js/scripts.js"></script>
+    <script src="../js/plugin.js"></script>
+    <script src="../js/scripts.js"></script>
 </body>
 </html>

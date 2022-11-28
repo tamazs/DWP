@@ -1,6 +1,6 @@
 <?php
-include_once 'config/conn.php';
-    $sql = 'SELECT * FROM Post';
+include_once '../config/conn.php';
+    $sql = 'SELECT * FROM Post WHERE typeID = 1 ORDER BY `timeStamp` DESC';
     $result = mysqli_query($conn, $sql);
     $post = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
@@ -8,7 +8,7 @@ include_once 'config/conn.php';
 <?php foreach ($post as $post): ?>
 <div class="card w-100 shadow-xss rounded-xxl border-0 p-4 mb-3">
     <div class="card-body p-0 d-flex">
-        <h4 class="fw-700 text-grey-900 font-xssss mt-1">kaka<span class="d-block font-xssss fw-500 mt-1 lh-3 text-grey-500"><?php echo $post['timeStamp'];?></span></h4>
+        <h4 class="fw-700 text-grey-900 font-xssss mt-1"><?php echo $post['userName'];?><span class="d-block font-xssss fw-500 mt-1 lh-3 text-grey-500"><?php echo $post['timeStamp'];?></span></h4>
     </div>
     <div class="card-body p-0 me-lg-5">
         <p class="fw-500 text-grey-500 lh-26 font-xssss w-100"><?php echo $post['text'];?></p>

@@ -1,8 +1,9 @@
 <?php
-include_once 'config/conn.php';
+include_once '../config/conn.php';
 $text =  '';
 $textErr = '';
-echo $_SESSION['id'];
+$userName = $_SESSION['username'];
+$userID = $_SESSION['id'];
 
 //Form submit
 if (isset($_POST['submit'])) {
@@ -40,7 +41,7 @@ if (isset($_POST['submit'])) {
     }
 
     if (empty($textErr)) {
-        $sql = "INSERT INTO Post (text, typeID) VALUES ('$text', '1')";
+        $sql = "INSERT INTO Post (text, typeID, userName, userID) VALUES ('$text', '1', '$userName', '$userID')";
         if (mysqli_query($conn, $sql)) {
             //Success
             header('Location: default.php');
