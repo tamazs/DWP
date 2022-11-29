@@ -42,7 +42,7 @@ function logOut() {
             </div>
             <div class="d-flex flex-row">
             <div class="p-2 text-center ms-3 position-relative dropdown-menu-icon menu-icon cursor-pointer">
-                <i class="feather-settings animation-spin d-inline-block font-xl text-current"></i>
+                <i class="feather-settings d-inline-block font-xl text-current"></i>
                 <div class="dropdown-menu-settings switchcolor-wrap">
                     <h4 class="fw-700 font-sm mb-4">Settings</h4>
                     <h6 class="font-xssss text-grey-500 fw-700 mb-3 d-block">Choose Color Theme</h6>

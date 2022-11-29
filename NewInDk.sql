@@ -116,8 +116,7 @@ CREATE TABLE Comment (
     FOREIGN KEY (postID) REFERENCES Post (postID),
     userID int NOT NULL,
     FOREIGN KEY (userID) REFERENCES User (userID),
-    userName varchar(50) NOT NULL,
-    `text` varchar(255) NOT NULL,
+    `content` varchar(255) NOT NULL,
     `timeStamp` TIMESTAMP
 );
 
