@@ -24,7 +24,7 @@ include_once '../config/conn.php';
     }
     echo json_encode($status);
 
-    $commentQuery = "SELECT Comment.userID, Comment.postID, Comment.content, Comment.`timeStamp`, User.userName FROM `Comment` LEFT OUTER JOIN `User` ON Comment.userID=`User`.userID RIGHT OUTER JOIN Post ON Comment.postID=Post.postID ORDER BY Comment.`timeStamp`";
+    $commentQuery = "SELECT Comment.userID, Comment.postID, Comment.content, Comment.`timeStamp`, User.userName FROM `Comment` INNER JOIN `User` ON Comment.userID=`User`.userID RIGHT OUTER JOIN Post ON Comment.postID=Post.postID ORDER BY Comment.`timeStamp`";
     $commentsResult = mysqli_query($conn, $commentQuery) or die("database error:". mysqli_error($conn));
     $commentHTML = '';
     while($comment = mysqli_fetch_assoc($commentsResult)){
@@ -34,6 +34,8 @@ include_once '../config/conn.php';
             <div class="panel-body">'.$comment["content"].'</div>
             </div> ';
     }
+
+    $imageResult = $conn->query("SELECT mediaID ,image FROM Media ");
 
 ?>
 <?php foreach ($post as $post): ?>
@@ -46,7 +48,7 @@ include_once '../config/conn.php';
     </div>
     <div class="card-body d-block p-0">
         <div class="row ps-2 pe-2">
-            <div class="col-xs-4 col-sm-4 p-1"><a href="https://via.placeholder.com/1200x800.png" data-lightbox="roadtrip"><img src="https://via.placeholder.com/1200x800.png" class="rounded-3 w-100" alt="image"></a></div>
+            <div class="col-xs-4 col-sm-4 p-1"><img src="https://via.placeholder.com/1200x800.png" class="rounded-3 w-100" alt="image"></div>
         </div>
     </div>
     <div class="card-body d-flex p-0 mt-3">

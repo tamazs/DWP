@@ -76,7 +76,9 @@ VALUES
     );
 
 CREATE TABLE Media (
-    mediaID int AUTO_INCREMENT NOT NULL PRIMARY KEY
+    mediaID int AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    `image` longblob NOT NULL,
+    `created` datetime NOT NULL DEFAULT current_timestamp()
 );
 
 CREATE TABLE `User` (
