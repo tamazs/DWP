@@ -15,6 +15,7 @@ include_once '../config/conn.php';
             'error' => 0,
             'message' => $message
         );
+        $_POST['comment'] = array();
     } else {
         $message = '<label class="text-danger">Error: Comment not posted.</label>';
         $status = array(
@@ -22,9 +23,31 @@ include_once '../config/conn.php';
             'message' => $message
         );
     }
-    echo json_encode($status);
 
-    $commentQuery = "SELECT Comment.userID, Comment.postID, Comment.content, Comment.`timeStamp`, User.userName FROM `Comment` INNER JOIN `User` ON Comment.userID=`User`.userID RIGHT OUTER JOIN Post ON Comment.postID=Post.postID ORDER BY Comment.`timeStamp`";
+    function getCommentBy($postId) {
+        $conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+        if (isset($conn)) {
+            $commentQuery =
+                "SELECT Comment.userID, Comment.postID, Comment.content, Comment.timeStamp, User.userName 
+                FROM Comment
+                LEFT JOIN User ON Comment.userID=User.userID
+                WHERE Comment.postID = $postId
+                ORDER BY Comment.timeStamp";
+            $commentsResult = mysqli_query($conn, $commentQuery) or die("database error:". mysqli_error($conn));
+            $commentHTML = '';
+            while($comment = mysqli_fetch_assoc($commentsResult)){
+                $commentHTML .= '
+                <div class="panel panel-primary p-2">
+                <div class="panel-heading">By <b>'.$comment["userName"].'</b> on <i>'.$comment["timeStamp"].'</i></div>
+                <div class="panel-body">'.$comment["content"].'</div>
+                </div> ';
+            }
+            return $commentHTML;
+        }
+    }
+
+    /*
+    $commentQuery = "SELECT Comment.userID, Comment.postID, Comment.content, Comment.`timeStamp`, User.userName FROM `Comment` INNER JOIN `User` ON Comment.userID=`User`.userID INNER JOIN Post ON Comment.postID=Post.postID ORDER BY Comment.`timeStamp`";
     $commentsResult = mysqli_query($conn, $commentQuery) or die("database error:". mysqli_error($conn));
     $commentHTML = '';
     while($comment = mysqli_fetch_assoc($commentsResult)){
@@ -34,6 +57,7 @@ include_once '../config/conn.php';
             <div class="panel-body">'.$comment["content"].'</div>
             </div> ';
     }
+    */
 
     $imageResult = $conn->query("SELECT mediaID ,image FROM Media ");
 
@@ -66,7 +90,7 @@ include_once '../config/conn.php';
             </div>
         </form>
         <div id="showComments">
-            <?php echo $commentHTML; ?>
+            <?php echo getCommentBy($post['postID']); ?>
         </div>
     </div>
 </div>

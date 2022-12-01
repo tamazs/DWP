@@ -42,7 +42,7 @@ if (isset($_POST['submit'])) {
     }
 
     if (empty($textErr)) {
-        $sql = "INSERT INTO Post (text, typeID, userName, userID, media) VALUES ('$text', '1', '$userName', '$userID')";
+        $sql = "INSERT INTO Post (text, typeID, userName, userID) VALUES ('$text', '1', '$userName', '$userID')";
         if (mysqli_query($conn, $sql)) {
             //Success
             header('Location: default.php');
