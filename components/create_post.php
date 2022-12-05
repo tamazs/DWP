@@ -1,7 +1,9 @@
 <?php
-include_once 'config/conn.php';
+include_once '../config/conn.php';
 $text =  '';
 $textErr = '';
+$userName = $_SESSION['username'];
+$userID = $_SESSION['id'];
 
 //Form submit
 if (isset($_POST['submit'])) {
@@ -26,7 +28,8 @@ if (isset($_POST['submit'])) {
         //Validate file ext
         if (in_array($file_ext, $allowed_ext)) {
             if ($file_size <= 1000000) {
-                move_uploaded_file($file_tmp, $target_dir);
+                $imgContent = addslashes(file_get_contents($file_tmp));
+                $insert = $conn->query("INSERT into Media (image, created) VALUES ('$imgContent', NOW())");
 
                 $message = '<p style="color: green;">File uploaded</p>';
             } else {
@@ -39,7 +42,7 @@ if (isset($_POST['submit'])) {
     }
 
     if (empty($textErr)) {
-        $sql = "INSERT INTO Post (text, typeID) VALUES ('$text', '1')";
+        $sql = "INSERT INTO Post (text, typeID, userName, userID) VALUES ('$text', '1', '$userName', '$userID')";
         if (mysqli_query($conn, $sql)) {
             //Success
             header('Location: default.php');
@@ -56,15 +59,15 @@ if (isset($_POST['submit'])) {
 
 <form class="card w-100 shadow-xss rounded-xxl border-0 ps-4 pt-4 pe-4 pb-3 mb-3" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" method="POST" enctype="multipart/form-data">
     <div class="card-body p-0 mt-3 position-relative">
-        <textarea name="text" value="<?php echo (isset($text)) ? $text: '' ?>" class="h100 bor-0 w-100 rounded-xxl p-2 ps-5 font-xssss text-grey-500 fw-500 border-light-md theme-dark-bg form-control <?php echo !$textErr ?:
-            'is-invalid'; ?>" cols="30" rows="10" placeholder="What's on your mind?"></textarea>
+        <input name="text" class="h100 bor-0 w-100 rounded-xxl p-2 ps-5 font-xssss text-grey-500 fw-500 border-light-md theme-dark-bg form-control <?php echo !$textErr ?:
+            'is-invalid'; ?>" placeholder="What's on your mind?">
         <div id="validationServerFeedback" class="invalid-feedback">
             Please write something.
         </div>
     </div>
-    <div class="card-body d-flex p-0 mt-0">
-        <input type="file" name="upload" ><i class="font-md text-success feather-image me-2"></i><span class="d-none-xs">Photo/Video</span>
+    <div class="card-body d-flex justify-content-between p-0 mt-2">
+        <div><input type="file" name="upload"><i class="font-md text-success feather-image me-2"></i><span class="d-none-xs">Photo</span></div>
         <?php echo $message ?? null; ?>
-        <input type="submit" name="submit" value="Send">
+        <input type="submit" class="col-12 bg-current text-center text-white font-xsss fw-600 p-3 w175 rounded-3 d-inline-block" name="submit" value="Send">
     </div>
 </form>

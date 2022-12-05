@@ -16,15 +16,15 @@ function logOut() {
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>NewInDK</title>
 
-    <link rel="stylesheet" href="css/themify-icons.css">
-    <link rel="stylesheet" href="css/feather.css">
+    <link rel="stylesheet" href="../css/themify-icons.css">
+    <link rel="stylesheet" href="../css/feather.css">
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="images/fav64.ico">
+    <link rel="icon" type="image/png" sizes="16x16" href="../images/fav64.ico">
     <!-- Custom Stylesheet -->
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/emoji.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/emoji.css">
     
-    <link rel="stylesheet" href="css/lightbox.css">
+    <link rel="stylesheet" href="../css/lightbox.css">
 
 </head>
 
@@ -38,11 +38,11 @@ function logOut() {
         <!-- navigation top-->
         <div class="nav-header bg-white shadow-xs border-0 justify-content-between">
             <div class="nav-top ">
-                <a href="default.php"><img src="images/logo.png" class="me-2 ms-0" style="height: 70px";><span class="d-inline-block fredoka-font ls-3 fw-600 text-current font-xxl logo-text mb-0">NewIn.DK</span> </a>
+                <a href="default.php"><img src="../images/logo.png" class="me-2 ms-0" style="height: 70px";><span class="d-inline-block fredoka-font ls-3 fw-600 text-current font-xxl logo-text mb-0">NewIn.DK</span> </a>
             </div>
             <div class="d-flex flex-row">
             <div class="p-2 text-center ms-3 position-relative dropdown-menu-icon menu-icon cursor-pointer">
-                <i class="feather-settings animation-spin d-inline-block font-xl text-current"></i>
+                <i class="feather-settings d-inline-block font-xl text-current"></i>
                 <div class="dropdown-menu-settings switchcolor-wrap">
                     <h4 class="fw-700 font-sm mb-4">Settings</h4>
                     <h6 class="font-xssss text-grey-500 fw-700 mb-3 d-block">Choose Color Theme</h6>
@@ -142,23 +142,21 @@ function logOut() {
             <div class="container ps-0 pe-0">
                 <div class="nav-content">
                     <div class="nav-wrap bg-white bg-transparent-card rounded-xxl shadow-xss pt-3 pb-1 mb-2 mt-2">
-                        <div class="nav-caption fw-600 font-xssss text-grey-500"><span>New </span>Feeds</div>
+                        <div class="nav-caption fw-600 font-xssss text-grey-500">Feeds</div>
                         <ul class="mb-1 top-content">
                             <li class="logo d-none d-xl-block d-lg-block"></li>
-                            <li><a href="default.php" class="nav-content-bttn open-font" ><i class="feather-tv btn-round-md bg-blue-gradiant me-3"></i><span>Newsfeed</span></a></li>
-                            <li><a href="default-badge.html" class="nav-content-bttn open-font" ><i class="feather-award btn-round-md bg-red-gradiant me-3"></i><span>Badges</span></a></li>
-                            <li><a href="default-storie.html" class="nav-content-bttn open-font" ><i class="feather-globe btn-round-md bg-gold-gradiant me-3"></i><span>Explore Stories</span></a></li>
-                            <li><a href="default-group.html" class="nav-content-bttn open-font" ><i class="feather-zap btn-round-md bg-mini-gradiant me-3"></i><span>Popular Groups</span></a></li>
-                            <li><a href="author-page.php" class="nav-content-bttn open-font"><i class="feather-user btn-round-md bg-primary-gradiant me-3"></i><span>Author Profile </span></a></li>
+                            <li><a href="../views/default.php" class="nav-content-bttn open-font" ><i class="feather-tv btn-round-md bg-primary-gradiant me-3"></i><span>Newsfeed</span></a></li>
+                            <li><a href="../views/qna.php" class="nav-content-bttn open-font" ><i class="feather-check btn-round-md bg-primary-gradiant me-3"></i><span>Q&A</span></a></li>
+                            <li><a href="../views/author-page.php" class="nav-content-bttn open-font"><i class="feather-user btn-round-md bg-primary-gradiant me-3"></i><span>Author Profile </span></a></li>
                         </ul>
                     </div>
 
                     <div class="nav-wrap bg-white bg-transparent-card rounded-xxl shadow-xss pt-3 pb-1">
-                        <div class="nav-caption fw-600 font-xssss text-grey-500"><span></span> Account</div>
+                        <div class="nav-caption fw-600 font-xssss text-grey-500">Account</div>
                         <ul class="mb-1">
                             <li class="logo d-none d-xl-block d-lg-block"></li>
-                            <li><a href="default-settings.php" class="nav-content-bttn open-font h-auto pt-2 pb-2"><i class="font-sm feather-settings me-3 text-grey-500"></i><span>Settings</span></a></li>
-                            <li><a href="default-analytics.html" class="nav-content-bttn open-font h-auto pt-2 pb-2"><i class="font-sm feather-pie-chart me-3 text-grey-500"></i><span>Analytics</span></a></li>
+                            <li><a href="../views/default-settings.php" class="nav-content-bttn open-font h-auto pt-2 pb-2"><i class="font-sm feather-settings me-3 text-grey-500"></i><span>Settings</span></a></li>
+                            <li><a href="default-analytics.html" class="nav-content-bttn open-font h-auto pt-2 pb-2"><i class="font-sm feather-database me-3 text-grey-500"></i><span>Admin</span></a></li>
                         </ul>
                     </div>
                 </div>

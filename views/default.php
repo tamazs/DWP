@@ -1,7 +1,7 @@
 <?php
 session_start();
-include_once 'config/userAuth.php';
-include_once 'inc/header.php';
+include_once '../config/userAuth.php';
+include_once '../inc/header.php';
 
 
 ?>
@@ -12,13 +12,13 @@ include_once 'inc/header.php';
                 <div class="middle-sidebar-left">                   
                 <?php
 
-                include 'create_post.php';
+                include '../components/create_post.php';
 
                 ?>
 
                 <?php
 
-                include 'post.php';
+                include '../components/post.php';
 
                 ?>
                             <div class="card w-100 text-center shadow-xss rounded-xxl border-0 p-4 mb-3 mt-3">
@@ -35,10 +35,10 @@ include_once 'inc/header.php';
                     </div>
                 </div>
         <!-- main content -->
-    <script src="js/plugin.js"></script>
+    <script src="../js/plugin.js"></script>
 
-    <script src="js/lightbox.js"></script>
-    <script src="js/scripts.js"></script>
+    <script src="../js/lightbox.js"></script>
+    <script src="../js/scripts.js"></script>
 
     
 </body>

@@ -1,33 +1,31 @@
 <?php
-echo $_POST['username'];
-echo $_POST['password'];
+include_once '../config/conn.php';
+$userName = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+$password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
-
-$conn = new mysqli("localhost", "Tamas", "1234", "NewInDkDB");
 // Now we check if the data from the login form was submitted, isset() will check if the data exists.
-$password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-echo "  - ". $password;
+$password_hashed = password_hash($password, PASSWORD_DEFAULT);
 
 if (isset($_POST['submit'])) {
     if ($stmt = $conn->prepare('SELECT userID, password FROM `User` WHERE userName = ?')) {
-        echo "WHHHAAATT!";// Bind parameters (s = string, i = int, b = blob, etc), in our case the username is a string so we use "s"
-        $stmt->bind_param('s', $_POST['username']);
+        // Bind parameters (s = string, i = int, b = blob, etc), in our case the username is a string so we use "s"
+        $stmt->bind_param('s', $userName);
         $stmt->execute();
         // Store the result so we can check if the account exists in the database.
         $stmt->store_result();
         var_dump($stmt);
         if ($stmt->num_rows > 0) {
-            $stmt->bind_result($userID, $password);
+            $stmt->bind_result($userID, $password_hashed);
             $stmt->fetch();
             // Account exists, now we verify the password.
             // Note: remember to use password_hash in your registration file to store the hashed passwords.
-            if (password_verify($_POST['password'], $password)) {
+            if (password_verify($password, $password_hashed)) {
                 session_start();
                 // Verification success! User has logged-in!
                 // Create sessions, so we know the user is logged in, they basically act like cookies but remember the data on the server.
                 session_regenerate_id();
                 $_SESSION['loggedin'] = TRUE;
-                $_SESSION['username'] = $_POST['username'];
+                $_SESSION['username'] = $userName;
                 $_SESSION['id'] = $userID;
                 header('Location: default.php');
             } else {
@@ -42,7 +40,7 @@ if (isset($_POST['submit'])) {
         $stmt->close();
     }
 }
-include_once 'inc/header_login.php';
+include_once '../inc/header_login.php';
 ?>
 
 
@@ -70,7 +68,7 @@ include_once 'inc/header_login.php';
     </div>
 </div>
 </div>
-    <script src="js/plugin.js"></script>
-    <script src="js/scripts.js"></script>
+    <script src="../js/plugin.js"></script>
+    <script src="../js/scripts.js"></script>
 </body>
 </html>
