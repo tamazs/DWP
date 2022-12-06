@@ -1,7 +1,7 @@
 <?php
 define('DB_HOST', 'localhost');
-define('DB_USER', 'Tamas');
-define('DB_PASS', '1234');
+define('DB_USER', 'bendi');
+define('DB_PASS', '');
 define('DB_NAME', 'NewInDkDB');
 
 //Create connection

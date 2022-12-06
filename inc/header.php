@@ -156,7 +156,7 @@ function logOut() {
                         <ul class="mb-1">
                             <li class="logo d-none d-xl-block d-lg-block"></li>
                             <li><a href="../views/default-settings.php" class="nav-content-bttn open-font h-auto pt-2 pb-2"><i class="font-sm feather-settings me-3 text-grey-500"></i><span>Settings</span></a></li>
-                            <li><a href="default-analytics.html" class="nav-content-bttn open-font h-auto pt-2 pb-2"><i class="font-sm feather-database me-3 text-grey-500"></i><span>Admin</span></a></li>
+                            <li><a href="admin-dashboard.php" class="nav-content-bttn open-font h-auto pt-2 pb-2"><i class="font-sm feather-database me-3 text-grey-500"></i><span>Admin</span></a></li>
                         </ul>
                     </div>
                 </div>
