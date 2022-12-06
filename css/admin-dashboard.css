@@ -1,0 +1,11 @@
+
+table, th, td {
+    border: 2px solid rgb(139, 139, 139);
+    border-collapse: collapse;
+    text-align: left;
+}
+th, td {
+    background-color: #d0ddec;
+}
+tr:hover {background-color: #dd9191;
+}
