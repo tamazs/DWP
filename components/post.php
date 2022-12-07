@@ -1,5 +1,6 @@
 <?php
 include_once '../config/conn.php';
+include_once '../config/reactionDAO.php';
     $sql = 'SELECT * FROM Post WHERE typeID = 1 ORDER BY `timeStamp` DESC';
     $result = mysqli_query($conn, $sql);
     $post = mysqli_fetch_all($result, MYSQLI_ASSOC);
@@ -7,7 +8,7 @@ include_once '../config/conn.php';
     $commentText = $_POST['comment'];
 
     if (!empty($commentText)) {
-        $postID = $_POST['postID'];
+        $postID=$_POST['postID'];
         $insertComments = "INSERT INTO `Comment` (typeID, postID, userID, content) VALUES ('2', '$postID', '$userID', '$commentText')";
         mysqli_query($conn, $insertComments) or die("database error: " . mysqli_error($conn));
         $message = '<label class="text-success">Comment posted Successfully.</label>';
@@ -76,7 +77,21 @@ include_once '../config/conn.php';
         </div>
     </div>
     <div class="card-body d-flex p-0 mt-3">
-        <a href="#" class="d-flex align-items-center fw-600 text-grey-900 text-dark lh-26 font-xssss me-2"><i class="feather-thumbs-up text-white bg-primary-gradiant me-1 btn-round-xs font-xss"></i><?php echo $post['like'];?> Like</a>
+   
+    <a href="#" class="d-flex align-items-center fw-600 text-grey-900 text-dark lh-26 font-xssss me-2"><i class="feather-thumbs-up text-white bg-primary-gradiant me-1 btn-round-xs font-xss"></i><?php echo $post['like_count'];?> Like</a>
+        <?php
+        $reactionDAO = new ReactionDAO();
+        $likeQuery = "SELECT post_like.ID FROM post_like WHERE postID=".$post['postID']."";
+        $likeResult = mysqli_query($conn, $likeQuery) or die("database error:". mysqli_error($conn));
+        $likeArray = mysqli_fetch_all($likeResult, MYSQLI_ASSOC);
+        $didUserLike = $reactionDAO->didUserLikePost($post['postID'],$_SESSION['id']);
+        echo count($likeArray);
+        if ($didUserLike) {
+          echo "<a href='../components/post_reaction.inc.php?postID=".$post['postID']."&action=cancel_like' class='cancel_like'>Remove Like</a>";
+        }else{
+          echo "<a href='../components/post_reaction.inc.php?postID=".$post['postID']."&action=like' class='like'>Like</a>";
+        }
+        ?>
     </div>
     <div class="container mt-2">
         <form method="POST" id="commentForm">
