@@ -33,22 +33,48 @@ include_once '../inc/header.php'
                                                         <th>Username</th>
                                                         <th>Email</th>
                                                         <th>Role</th>
-                                                        <th colspan="2">Manage</th>
+                                                        <th>Manage</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <?php while($user = mysqli_fetch_assoc($users)) : ?>
-                                                    <tr>
-                                                        <td><?= $user['userID'] ?></td>
-                                                        <td><?= $user['firstName'] ?></td>
-                                                        <td><?= $user['lastName'] ?></td>
-                                                        <td><?= $user['userName'] ?></td>
-                                                        <td><?= $user['firstName'] ?></td>
-                                                        <td>tadmin</td>
-                                                        <td>Edit</td>
-                                                        <td>Delete</td>
+                                                    <?php
+                                                    // read all row from database
+                                                    $sql = "SELECT * FROM User";
+                                                    $result = $connection->query($sql);
+
+                                                    if (!$result){
+                                                        die("Invalid query: " . $connection->error);
+                                                    }
+
+                                                    //read data for each row
+                                                    while($row = $result->fetch_assoc())
+                                                    {
+                                                        echo"<tr>
+                                                                <td>" . $row["id"] . "</td> 
+                                                                <td>" . $row["firstName"] . "</td>
+                                                                <td>" . $row["lastName"] . "</td>
+                                                                <td>" . $row ["userName"] . "</td>                                                              
+                                                                <td>" . $row["email"] . "</td>                                                                                                                                                                                             
+                                                                <td>" . $row["role"] . "</td>                                                               
+                                                                <td> 
+                                                                <a class='btn btn-primary btn-sm' href='update'›Update‹/a> 
+                                                                <a class='btn btn-danger btn-sm' href='delete'›Delete‹/a>
+                                                                </td>
+                                                            </tr>";
+                                                    }?>
+                                                   <tr>
+                                                            <td>testuserid</td>
+                                                            <td>testFirstName</td>
+                                                            <td>testLastName</td>
+                                                            <td>testUsername</td>
+                                                            <td>testEmail</td>
+                                                            <td>tadmin</td>
+                                                            <td>
+                                                                <a href="Edit">Edit</a>
+                                                                <a href="Delete">Delete</a>
+                                                            </td>                                                        
                                                     </tr>
-                                                    <?php endwhile ?>
+                                                    
                                                 </tbody> 
                                             </table>
                                         </div>
