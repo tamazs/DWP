@@ -1,8 +1,11 @@
-
+table {
+    border-radius: 15px;
+}
 table, th, td {
-    border: 2px solid rgb(139, 139, 139);
+    border: 2px solid rgb(255, 255, 255);
     border-collapse: collapse;
     text-align: left;
+
 }
 th, td {
     background-color: #d0ddec;

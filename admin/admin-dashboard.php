@@ -6,7 +6,8 @@ include_once '../inc/header.php'
 
 ?>
 
-<link rel="stylesheet" href="../css/admin-dashboard.css"> 
+link rel="stylesheet" href="../css/admin-dashboard.css">
+
 
 <section class="dashboard">
             
@@ -18,10 +19,10 @@ include_once '../inc/header.php'
                                 <div class="col-lg-12">
                                     <div class="card w-100 border-0 shadow-none p-5 rounded-xxl bg-lightblue2 mb-3">
                                         <div class="row">
-                                            <div class="col-lg-6">
+                                            <div class="col-lg-6 my-3">
                                                 <img src="../images/admin.greeting.png" alt="image" class="w-50">
                                             </div>
-                                            <div class="col-lg-6 ps-lg-5">
+                                            <div class="col-lg-6 ps-lg-5 my-3">
                                                 <h1 class="display1-size d-block mb-2 text-grey-700 fw-700">
                                                     Hi, Admin!
                                                 </h1>
@@ -29,7 +30,11 @@ include_once '../inc/header.php'
                                                     Welcome to the user manager session!
                                                 </h3>
                                             </div>
-                                            <table>
+                                            <div class= "container my-2">
+                                                <a class="btn btn-primary" href="../admin/create-user.php">New user</a>
+                                            </div><br>
+<div class="table-responsive-sm">
+                                            <table class="table my-2 table-bordered table-dark table-hover">
                                                 <thead>
                                                     <tr>
                                                         <th>UserID</th>
@@ -61,14 +66,13 @@ include_once '../inc/header.php'
                                                                 <td>" . $row ["userName"] . "</td>                                                              
                                                                 <td>" . $row["email"] . "</td>                                                                                                                                                                                             
                                                                 <td>" . $row["roleID"]. "</td>                                                               
-                                                                <td> 
-                                                                <Edit class='btn btn-primary btn-sm' href='edit'>Edit</a></td><td>
-                                                                <Delete class='btn btn-danger btn-sm' href='delete'>Delete</a>
-                                                                </td>
+                                                                <td><a class='btn btn-primary btn-sm' href='../admin/edit-user.php'>Edit</a></td>
+                                                                <td><a class='btn btn-danger btn-sm' href='../admin/delete-user.php'>Delete</a></td>
                                                             </tr>";
                                                     }?>
                                                 </tbody> 
                                             </table>
+    </div>
                                         </div>
                                     </div>  
                                 </div>

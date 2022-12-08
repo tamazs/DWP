@@ -41,7 +41,7 @@ include_once '../inc/header.php'
             </div>
             <div class="row mb-1">
                 <div class="offset-sm-1 col-cm-2 d-grid my-1">
-                    <button type="update" class="btn btn-primary">Update</button>
+                    <button type="submit" class="btn btn-primary">Submit</button>
                 </div>
                 <div class="offset-sm-1 col-cm-2 d-grid my-1">
                     <a class="btn btn-outline-danger" href="../admin/admin-dashboard.php" role="button">Cancel</a>
