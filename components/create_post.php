@@ -29,7 +29,9 @@ if (isset($_POST['submit'])) {
         if (in_array($file_ext, $allowed_ext)) {
             if ($file_size <= 1000000) {
                 $imgContent = addslashes(file_get_contents($file_tmp));
-                $insert = $conn->query("INSERT into Media (image, created) VALUES ('$imgContent', NOW())");
+
+                $conn->query("INSERT into Media (image, created) VALUES ('$imgContent', NOW())");
+                $insertedMediaId = mysqli_insert_id($conn);
 
                 $message = '<p style="color: green;">File uploaded</p>';
             } else {
@@ -42,17 +44,25 @@ if (isset($_POST['submit'])) {
     }
 
     if (empty($textErr)) {
-        $sql = "INSERT INTO Post (text, typeID, userName, userID) VALUES ('$text', '1', '$userName', '$userID')";
-        if (mysqli_query($conn, $sql)) {
+        $conn->query("INSERT INTO Post (text, typeID, userName, userID) VALUES ('$text', '1', '$userName', '$userID')");
+        $insertedPostId = mysqli_insert_id($conn);
+
+        /* if (mysqli_query($conn, $sql)) {
+
             //Success
-            header('Location: default.php');
+            // header('Location: default.php');
         } else {
             //Error
             echo 'Error: ' . mysqli_error($conn);
-        }
+        } */
         
     }
-    
+
+    if (isset($insertedMediaId, $insertedPostId)) {
+        $conn->query("INSERT INTO PostHasMedia (mediaID, postID) VALUES ($insertedMediaId, $insertedPostId)");
+    }
+    //
+
 }
 
 ?>

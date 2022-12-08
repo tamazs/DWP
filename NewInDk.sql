@@ -98,7 +98,7 @@ CREATE TABLE `User` (
 
 CREATE TABLE Post (
     postID int AUTO_INCREMENT NOT NULL PRIMARY KEY,
-    `like` int NULL,
+    `like_count` int NULL,
     typeID int(4) NOT NULL,
     FOREIGN KEY (typeID) REFERENCES Type (typeID),
     mediaID int NULL,
@@ -130,10 +130,10 @@ CREATE TABLE PostHasMedia (
     FOREIGN KEY (postID) REFERENCES Post (postID)
 );
 
-CREATE TABLE UserHasPost (
-    userID INT NOT NULL,
-    postID INT NOT NULL,
-    CONSTRAINT PK_NewInDK PRIMARY KEY (userID, postID),
+CREATE TABLE post_like(
+    ID int AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    userID int NOT NULL,
     FOREIGN KEY (userID) REFERENCES User (userID),
+    postID int NOT NULL,
     FOREIGN KEY (postID) REFERENCES Post (postID)
-);
+)ENGINE=InnoDB;

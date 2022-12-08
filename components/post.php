@@ -1,5 +1,6 @@
 <?php
 include_once '../config/conn.php';
+include_once '../config/reactionDAO.php';
     $sql = 'SELECT * FROM Post WHERE typeID = 1 ORDER BY `timeStamp` DESC';
     $result = mysqli_query($conn, $sql);
     $post = mysqli_fetch_all($result, MYSQLI_ASSOC);
@@ -7,7 +8,7 @@ include_once '../config/conn.php';
     $commentText = $_POST['comment'];
 
     if (!empty($commentText)) {
-        $postID = $_POST['postID'];
+        $postID=$_POST['postID'];
         $insertComments = "INSERT INTO `Comment` (typeID, postID, userID, content) VALUES ('2', '$postID', '$userID', '$commentText')";
         mysqli_query($conn, $insertComments) or die("database error: " . mysqli_error($conn));
         $message = '<label class="text-success">Comment posted Successfully.</label>';
@@ -59,8 +60,23 @@ include_once '../config/conn.php';
     }
     */
 
-    $imageResult = $conn->query("SELECT mediaID ,image FROM Media ");
-
+function getImageBy($postId) {
+    $conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+    if (isset($conn)) {
+        $imageQuery =
+            "SELECT *
+                FROM Media
+                INNER JOIN PostHasMedia ON PostHasMedia.postID=$postId
+                WHERE Media.mediaID=PostHasMedia.mediaID";
+        $imageResult = mysqli_query($conn, $imageQuery) or die("database error:". mysqli_error($conn));
+        if($imageResult->num_rows > 0){
+            $image = mysqli_fetch_assoc($imageResult);
+            return base64_encode($image['image']);
+        } else {
+            return null;
+        }
+    }
+}
 ?>
 <?php foreach ($post as $post): ?>
 <div class="card w-100 shadow-xss rounded-xxl border-0 p-4 mb-3">
@@ -70,13 +86,36 @@ include_once '../config/conn.php';
     <div class="card-body p-0 me-lg-5">
         <p class="fw-500 text-grey-500 lh-26 font-xssss w-100"><?php echo $post['text'];?></p>
     </div>
-    <div class="card-body d-block p-0">
-        <div class="row ps-2 pe-2">
-            <div class="col-xs-4 col-sm-4 p-1"><img src="https://via.placeholder.com/1200x800.png" class="rounded-3 w-100" alt="image"></div>
-        </div>
-    </div>
+    <?php $img = getImageBy($post['postID']);
+    if (isset($img)) {
+        $imageTemplate =
+        '<div class="card-body d-block p-0">
+            <div class="row ps-2 pe-2">
+                <div class="col-xs-12 col-sm-12 p-1">
+                        <img class="post-img mw-100" src="data:image/*;charset=utf8;base64,' . $img . '">
+                </div>
+            </div>
+        </div>';
+        echo $imageTemplate;
+    }
+
+
+    ?>
+
     <div class="card-body d-flex p-0 mt-3">
-        <a href="#" class="d-flex align-items-center fw-600 text-grey-900 text-dark lh-26 font-xssss me-2"><i class="feather-thumbs-up text-white bg-primary-gradiant me-1 btn-round-xs font-xss"></i><?php echo $post['like'];?> Like</a>
+        <?php
+        $reactionDAO = new ReactionDAO();
+        $likeQuery = "SELECT post_like.ID FROM post_like WHERE postID=".$post['postID']."";
+        $likeResult = mysqli_query($conn, $likeQuery) or die("database error:". mysqli_error($conn));
+        $likeArray = mysqli_fetch_all($likeResult, MYSQLI_ASSOC);
+        $didUserLike = $reactionDAO->didUserLikePost($post['postID'],$_SESSION['id']);
+        echo count($likeArray);
+        if ($didUserLike) {
+          echo "<a href='../components/post_reaction.inc.php?postID=".$post['postID']."&action=cancel_like' class='d-flex align-items-center fw-600 text-grey-900 text-dark lh-26 font-xssss ms-2 me-2'><i class='feather-thumbs-down text-white bg-primary-gradiant me-1 btn-round-xs font-xss'></i>Remove Like</a>";
+        }else{
+          echo "<a href='../components/post_reaction.inc.php?postID=".$post['postID']."&action=like' class='d-flex align-items-center fw-600 text-grey-900 text-dark lh-26 font-xssss ms-2 me-2'><i class='feather-thumbs-up text-white bg-primary-gradiant me-1 btn-round-xs font-xss'></i>Like</a>";
+        }
+        ?>
     </div>
     <div class="container mt-2">
         <form method="POST" id="commentForm">
