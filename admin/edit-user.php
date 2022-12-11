@@ -21,7 +21,7 @@ if (isset($_POST['update'])) {
 
     if ($edit) {
         mysqli_close($conn);
-        header('Location: edit-user.php');
+        header('Location: admin-dashboard.php');
     } else {
         echo mysqli_error($conn);
     }
