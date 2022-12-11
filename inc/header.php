@@ -36,7 +36,7 @@ function logOut() {
         <!-- navigation top-->
         <div class="nav-header bg-white shadow-xs border-0 justify-content-between">
             <div class="nav-top ">
-                <a href="default.php"><img src="../images/logo.png" class="me-2 ms-0" style="height: 70px";><span class="d-inline-block fredoka-font ls-3 fw-600 text-current font-xxl logo-text mb-0">NewIn.DK</span> </a>
+                <a href="../views/default.php"><img src="../images/logo.png" class="me-2 ms-0" style="height: 70px";><span class="d-inline-block fredoka-font ls-3 fw-600 text-current font-xxl logo-text mb-0">NewIn.DK</span> </a>
             </div>
             <div class="d-flex flex-row">
             <div class="p-2 text-center ms-3 position-relative dropdown-menu-icon menu-icon cursor-pointer">

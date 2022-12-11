@@ -6,8 +6,23 @@ include_once '../inc/header.php'
 
 ?>
 
-link rel="stylesheet" href="../css/admin-dashboard.css">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>NewInDK</title>
 
+    <link rel="stylesheet" href="../css/themify-icons.css">
+    <link rel="stylesheet" href="../css/feather.css">
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="../images/fav64.ico">
+    <!-- Custom Stylesheet -->
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/emoji.css">
+
+    <link rel="stylesheet" href="../css/lightbox.css">
+
+</head>
 
 <section class="dashboard">
             
@@ -31,8 +46,9 @@ link rel="stylesheet" href="../css/admin-dashboard.css">
                                                 </h3>
                                             </div>
                                             <div class= "container my-2">
-                                                <a class="btn btn-primary" href="../admin/create-user.php">New user</a>
+                                                <h2 class="display1-size d-block mb-2 text-grey-700 fw-500">Users <a class="btn btn-primary" href="../admin/create-user.php">New user</a></h2>                                             
                                             </div><br>
+<!-- Table for the users -->
 <div class="table-responsive-sm">
                                             <table class="table my-2 table-bordered table-dark table-hover">
                                                 <thead>
@@ -42,7 +58,7 @@ link rel="stylesheet" href="../css/admin-dashboard.css">
                                                         <th>Username</th>
                                                         <th>Email</th>
                                                         <th>Role</th>
-                                                        <th colspan="2">Manage</th>
+                                                        <th colspan="3">Manage</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -60,19 +76,66 @@ link rel="stylesheet" href="../css/admin-dashboard.css">
                                                     while($row = $result->fetch_assoc())
                                                     {
                                                         echo"<tr>
-                                                                <td>" . $row["userID"] . "</td> 
+                                                                <td>" . $row['userID'] . "</td> 
                                                                 <td>" . $row["firstName"] . "</td>
                                                                 <td>" . $row["lastName"] . "</td>
                                                                 <td>" . $row ["userName"] . "</td>                                                              
                                                                 <td>" . $row["email"] . "</td>                                                                                                                                                                                             
-                                                                <td>" . $row["roleID"]. "</td>                                                               
-                                                                <td><a class='btn btn-primary btn-sm' href='../admin/edit-user.php'>Edit</a></td>
-                                                                <td><a class='btn btn-danger btn-sm' href='../admin/delete-user.php'>Delete</a></td>
-                                                            </tr>";
+                                                                <td>" . $row["roleID"] . "</td>                                                               
+                                                                <td><a href='../admin/edit-user.php?id=$row[userID];' class='btn btn-primary btn-sm' >Edit</a></td>
+                                                                <td><a class='btn btn-warning btn-sm' href='../admin/*****'>Block</a></td>
+                                                                <td><a class='btn btn-danger btn-sm ' href='../admin/*****'>Delete</a></td>
+                                                            </tr>"; //still need to add the names for the roles
                                                     }?>
                                                 </tbody> 
                                             </table>
-    </div>
+</div>
+<!-- Table for the posts -->
+                                            <div class= "container my-2">
+                                                <h2 class="display1-size d-block mb-2 text-grey-700 fw-500">Posts <a class="btn btn-primary" href="../admin/create-user.php">New post</a> </h2>
+                                            </div><br>
+<div class="table-responsive-sm">
+                                            <table class="table my-2 table-bordered table-dark table-hover">
+                                                <thead>
+                                                    <tr>
+                                                        <th>PostID</th>
+                                                        <th>Type</th>
+                                                        <th>Media</th>
+                                                        <th>UserID</th>
+                                                        <th>UserName</th>
+                                                        <th>Text</th>
+                                                        <th>Time</th>
+                                                        <th colspan="2">Manage</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                <?php
+                                                    // read all row from database
+                                                    $sql = "SELECT * FROM Post";
+                                                    $result = $conn->query($sql);
+
+                                                    if (!$result){
+                                                        die("Invalid query: " . $conn->error);
+                                                    }
+
+                                                    //read data for each row
+                                                    while($row = $result->fetch_assoc())
+                                                    {
+                                                        echo"<tr>
+                                                                <td>" . $row["postID"] . "</td> 
+                                                                <td>" . $row["typeID"] . "</td>
+                                                                <td>" . $row["mediaID"] . "</td>
+                                                                <td>" . $row ["userID" ] . "</td> 
+                                                                <td>" . $row ["userName"] . "</td>                                                             
+                                                                <td>" . $row["text"] . "</td>                                                                                                                                                                                             
+                                                                <td>" . $row["timeStamp"]. "</td>                                                               
+                                                                <td><a class='btn btn-primary btn-sm' href='../admin/edit-user.php'>Edit</a></td>
+                                                                <td><a class='btn btn-danger btn-sm' href='../admin/delete-user.php'>Delete</a></td>
+                                                            </tr>"; 
+                                                    }?>
+                                                </tbody> 
+                                            </table>
+</div>
                                         </div>
                                     </div>  
                                 </div>
