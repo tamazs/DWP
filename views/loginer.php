@@ -52,11 +52,11 @@ include_once '../inc/header_login.php';
                 <h2 class="fw-700 display1-size display2-md-size mb-4">Log into<br>your account</h2>
                 <form method="post" action="">
                     <div class="form-group icon-input mb-3">
-                        <input type="text" name="username" class="style2-input ps-5 form-control text-grey-900 font-xss ls-3" placeholder="Username">
+                        <input type="text" name="username" class="style2-input ps-5 form-control text-grey-900 font-xsss fw-600" placeholder="Username">
                         <i class="font-sm ti-user text-grey-500 pe-0"></i>
                     </div>
                     <div class="form-group icon-input mb-3">
-                        <input type="password" name="password" class="style2-input ps-5 form-control text-grey-900 font-xss ls-3" placeholder="Password">
+                        <input type="password" name="password" class="style2-input ps-5 form-control text-grey-900 font-xsss fw-600" placeholder="Password">
                         <i class="font-sm ti-lock text-grey-500 pe-0"></i>
                     </div>
                     <div class="col-sm-12 p-0 text-left">
