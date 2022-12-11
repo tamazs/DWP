@@ -19,6 +19,18 @@ if (isset($_POST['postUpdate'])) {
         echo mysqli_error($conn);
     }
 }
+
+if (isset($_POST['postDelete'])) {
+    $sqlDelete = "DELETE * FROM `Post` WHERE postID='$postID'";
+    $delete = mysqli_query($conn, $sqlDelete);
+
+    if ($delete) {
+        mysqli_close($conn);
+        header('Location: default.php');
+    } else {
+        echo mysqli_error($conn);
+    }
+}
 include_once '../inc/header.php';
 ?>
 <!-- main content -->
@@ -27,6 +39,7 @@ include_once '../inc/header.php';
     <div class="middle-sidebar-bottom">
         <div class="middle-sidebar-left">
             <div class="middle-wrap">
+                <form action="" method="post">
                 <div class="card w-100 border-0 bg-white shadow-xs p-0 mb-4">
                     <div class="card-body p-4 w-100 bg-current border-0 d-flex rounded-3">
                         <a href="default.php" class="d-inline-block mt-2"><i class="ti-arrow-left font-sm text-white"></i></a>
@@ -40,6 +53,9 @@ include_once '../inc/header.php';
                             <div class="col-lg-12">
                                 <input name="postUpdate" type="submit" class="bg-current text-center text-white font-xsss fw-600 p-3 w175 rounded-3 d-inline-block" value="Update">
                             </div>
+                    <div class="col-lg-12">
+                        <input name="postDelete" type="submit" class="bg-current text-center text-white font-xsss fw-600 p-3 w175 rounded-3 d-inline-block" value="Delete">
+                    </div>
                     </div>
 
                     </form>
