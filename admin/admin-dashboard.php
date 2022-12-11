@@ -82,11 +82,16 @@ include_once '../inc/header.php'
                                                                 <td>" . $row ["userName"] . "</td>                                                              
                                                                 <td>" . $row["email"] . "</td>                                                                                                                                                                                             
                                                                 <td>" . $row["roleID"] . "</td>                                                               
-                                                                <td><a href='../admin/edit-user.php?id=$row[userID];' class='btn btn-primary btn-sm' >Edit</a></td>
-                                                                <td><a class='btn btn-warning btn-sm' href='../admin/*****'>Block</a></td>
-                                                                <td><a class='btn btn-danger btn-sm ' href='../admin/*****'>Delete</a></td>
+                                                                <td><a class='btn btn-primary btn-sm' href='../admin/edit-user.php?id=$row[userID];'>Edit</a></td>
+                                                                <td><a class='btn btn-warning btn-sm' href='../admin/block-user.php?id=$row[userID]; onclick='return confirm('Are you sure you want to block this user?');'>Block</a></td>
+                                                                <td><a class='btn btn-danger btn-sm ' onclick='return confirm('Are you sure you want to delete this user?');'>Delete</a></td>
                                                             </tr>"; //still need to add the names for the roles
-                                                    }?>
+                                                    }
+                                                    if(isset($_POST['delete'])) {
+                                                        $query = "DELETE FROM `user` WHERE ID=" .$_GET['id'];
+                                                        mysqli_query($connection, $query);
+                                                    }
+                                                    ?>
                                                 </tbody> 
                                             </table>
 </div>
