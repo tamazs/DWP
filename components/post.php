@@ -47,19 +47,6 @@ include_once '../config/reactionDAO.php';
         }
     }
 
-    /*
-    $commentQuery = "SELECT Comment.userID, Comment.postID, Comment.content, Comment.`timeStamp`, User.userName FROM `Comment` INNER JOIN `User` ON Comment.userID=`User`.userID INNER JOIN Post ON Comment.postID=Post.postID ORDER BY Comment.`timeStamp`";
-    $commentsResult = mysqli_query($conn, $commentQuery) or die("database error:". mysqli_error($conn));
-    $commentHTML = '';
-    while($comment = mysqli_fetch_assoc($commentsResult)){
-        $commentHTML .= '
-            <div class="panel panel-primary p-2">
-            <div class="panel-heading">By <b>'.$comment["userName"].'</b> on <i>'.$comment["timeStamp"].'</i></div>
-            <div class="panel-body">'.$comment["content"].'</div>
-            </div> ';
-    }
-    */
-
 function getImageBy($postId) {
     $conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
     if (isset($conn)) {
@@ -77,11 +64,32 @@ function getImageBy($postId) {
         }
     }
 }
+
+function showEdit($postId, $userId) {
+    $conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+    if (isset($conn)) {
+        $posteditQuery =
+            "SELECT *
+                FROM Post
+                WHERE postID=$postId
+                AND userID=$userId";
+        $editResult = mysqli_query($conn, $posteditQuery) or die("database error:". mysqli_error($conn));
+        if($editResult->num_rows > 0){
+           $editBtn = "<a style='text-decoration: none;' href='edit-post.php?id=" . $postId . "'>Edit</a>";
+            return $editBtn;
+        } else {
+            return null;
+        }
+    }
+}
 ?>
 <?php foreach ($post as $post): ?>
 <div class="card w-100 shadow-xss rounded-xxl border-0 p-4 mb-3">
     <div class="card-body p-0 d-flex">
         <h4 class="fw-700 text-grey-900 font-xssss mt-1"><?php echo $post['userName'];?><span class="d-block font-xssss fw-500 mt-1 lh-3 text-grey-500"><?php echo $post['timeStamp'];?></span></h4>
+        <?php echo showEdit($post['postID'], $userID);
+
+        ?>
     </div>
     <div class="card-body p-0 me-lg-5">
         <p class="fw-500 text-grey-500 lh-26 font-xssss w-100"><?php echo $post['text'];?></p>

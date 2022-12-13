@@ -98,11 +98,8 @@ CREATE TABLE `User` (
 
 CREATE TABLE Post (
     postID int AUTO_INCREMENT NOT NULL PRIMARY KEY,
-    `like_count` int NULL,
     typeID int(4) NOT NULL,
     FOREIGN KEY (typeID) REFERENCES Type (typeID),
-    mediaID int NULL,
-    FOREIGN KEY (mediaID) REFERENCES Media (mediaID),
     userID int NOT NULL,
     FOREIGN KEY (userID) REFERENCES User (userID),
     userName varchar(50) NOT NULL,

@@ -66,15 +66,15 @@ $conn->close();
                                 <input type="text" name="lastName" class="style2-input ps-5 form-control text-grey-900 font-xsss fw-600" placeholder="Last Name">
                             </div>
                             <div class="form-group icon-input mb-3">
-                                <input type="text" name="username" class="style2-input ps-5 form-control text-grey-900 font-xss ls-3" placeholder="Username">
+                                <input type="text" name="username" class="style2-input ps-5 form-control text-grey-900 font-xsss fw-600" placeholder="Username">
                                 <i class="font-sm ti-user text-grey-500 pe-0"></i>
                             </div>
                             <div class="form-group icon-input mb-3">
-                                <input type="number" name="postalCode" class="style2-input ps-5 form-control text-grey-900 font-xss ls-3" placeholder="Postal code">
+                                <input type="number" name="postalCode" class="style2-input ps-5 form-control text-grey-900 font-xsss fw-600" placeholder="Postal code">
                                 <i class="font-sm ti-lock text-grey-500 pe-0"></i>
                             </div>
                             <div class="form-group icon-input mb-3">
-                                <input type="text" name="origin" class="style2-input ps-5 form-control text-grey-900 font-xss ls-3" placeholder="Ethnicity">
+                                <input type="text" name="origin" class="style2-input ps-5 form-control text-grey-900 font-xsss fw-600" placeholder="Ethnicity">
                                 <i class="font-sm ti-lock text-grey-500 pe-0"></i>
                             </div>
                             <div class="form-group icon-input mb-3">
@@ -82,7 +82,7 @@ $conn->close();
                                 <input type="email" name="email" class="style2-input ps-5 form-control text-grey-900 font-xsss fw-600" placeholder="Email Address">
                             </div>
                             <div class="form-group icon-input mb-3">
-                                <input type="password" name="password" class="style2-input ps-5 form-control text-grey-900 font-xss ls-3" placeholder="Password">
+                                <input type="password" name="password" class="style2-input ps-5 form-control text-grey-900 font-xsss fw-600" placeholder="Password">
                                 <i class="font-sm ti-lock text-grey-500 pe-0"></i>
                             </div>
                             <div class="col-sm-12 p-0 text-left">
