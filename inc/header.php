@@ -3,7 +3,7 @@ $roleID = $_SESSION['roleid'];
 
 function showAdminButton ($roleId) {
     if ($roleId == 2) {
-        $adminBtn = "<li><a href='default-analytics.php' class='nav-content-bttn open-font h-auto pt-2 pb-2'><i class='font-sm feather-database me-3 text-grey-500'></i><span>Admin</span></a></li>";
+        $adminBtn = "<li><a href='../admin/admin-dashboard.php' class='nav-content-bttn open-font h-auto pt-2 pb-2'><i class='font-sm feather-database me-3 text-grey-500'></i><span>Admin</span></a></li>";
         return $adminBtn;
     } else {
         return null;

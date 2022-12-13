@@ -110,7 +110,7 @@ include_once '../inc/header.php';
 
                                     <div class="col-lg-6 mb-3">
                                         <div class="form-group">
-                                            <label class="mont-font fw-600 font-xsss">Role</label>
+                                            <label class="mont-font fw-600 font-xsss">Role<span class="font-xssss fw-500 lh-3 text-grey-500 ms-2">(1 = user, 2 = admin)</span></label>
                                             <input type="number" name="roleID" class="form-control" min="1" max="2" value="<?php echo $data['roleID']?>">
                                         </div>        
                                     </div>

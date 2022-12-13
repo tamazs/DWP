@@ -3,10 +3,18 @@ session_start();
 include_once '../config/conn.php';
 include_once '../config/userAuth.php';
 include_once '../config/adminAuth.php';
+
+$username = $_SESSION['username'];
+
+$sql = 'SELECT * FROM `User`';
+$result = mysqli_query($conn, $sql);
+$users = mysqli_fetch_all($result, MYSQLI_ASSOC);
+
 include_once '../inc/header.php';
 
 ?>
-<section class="dashboard">
+ <!-- main content -->
+        <div class="main-content bg-white right-chat-active">
             
             <div class="middle-sidebar-bottom">
                 <div class="middle-sidebar-left">
@@ -16,116 +24,61 @@ include_once '../inc/header.php';
                                 <div class="col-lg-12">
                                     <div class="card w-100 border-0 shadow-none p-5 rounded-xxl bg-lightblue2 mb-3">
                                         <div class="row">
-                                            <div class="col-lg-12 ps-lg-5 my-3">
-                                                <h1 class="display1-size d-block mb-2 text-grey-700 fw-700">
-                                                    Hi, Admin!
-                                                </h1>
-                                                <h3 class=" d-block mb-4 text-grey-600 fw-200">
-                                                    Welcome to the user manager session!
-                                                </h3>
+                                            <div class="col-lg-12 ps-lg-5">
+                                                <h2 class="display1-size d-block mb-2 text-grey-900 fw-700">
+                                                Hi, <?php echo $username; ?></h2>
+                                                <div class="card-body p-2 border-0">
+                                                    <div class="row">
+                                                        <table style="border-collapse: separate; border-spacing: 0 15px; border: 1px solid gray;">
+                                                            <thead>
+                                                            <tr>
+                                                                <th>UserID</th>
+                                                                <th colspan="2">Name</th>
+                                                                <th>Username</th>
+                                                                <th>Email</th>
+                                                                <th>Role</th>
+                                                                <th colspan="3">Manage</th>
+                                                            </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                        <?php foreach ($users as $user): ?>
+                                                            <tr>
+                                                                <td><?php echo $user['userID'] ?></td>
+                                                                <td><?php echo $user['firstName'] ?></td>
+                                                                <td><?php echo $user['lastName'] ?></td>
+                                                                <td><?php echo $user['userName'] ?></td>
+                                                                <td><?php echo $user['email'] ?></td>
+                                                                <td><?php echo $user['roleID'] ?></td>
+                                                                <td><a class='btn btn-primary btn-sm' href='../admin/edit-user.php?id=<?php echo $user['userID'] ?>'>Edit</a></td>
+                                                                <td><a class='btn btn-danger btn-sm ' href='../admin/delete-user.php?id=<?php echo $user['userID'] ?>'>Delete</a></td>
+                                                            </tr>
+                                                        <?php endforeach; ?>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <div class= "container my-2">
-                                                <h2 class="display1-size d-block mb-2 text-grey-700 fw-500">Users <a class="btn btn-primary" href="../admin/create-user.php">New user</a></h2>                                             
-                                            </div><br>
-<!-- Table for the users -->
-<div class="table-responsive-sm">
-                                            <table class="table my-2 table-bordered table-dark table-hover">
-                                                <thead>
-                                                    <tr>
-                                                        <th style="width:70%">UserID</th>
-                                                        <th colspan="2">Name</th>
-                                                        <th>Username</th>
-                                                        <th>Email</th>
-                                                        <th>Role</th>
-                                                        <th colspan="3">Manage</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                <?php
-                                                    // read all row from database
-                                                    $conn = mysqli_connect("localhost", "Tamas", "1234", "NewInDkDB");
-                                                    $sql = "SELECT * FROM User";
-                                                    $result = $conn->query($sql);
-
-                                                    if (!$result){
-                                                        die("Invalid query: " . $conn->error);
-                                                    }
-
-                                                    //read data for each row
-                                                    while($row = $result->fetch_assoc())
-                                                    {
-                                                        echo"<tr>
-                                                                <td>" . $row['userID'] . "</td> 
-                                                                <td>" . $row["firstName"] . "</td>
-                                                                <td>" . $row["lastName"] . "</td>
-                                                                <td>" . $row ["userName"] . "</td>                                                              
-                                                                <td>" . $row["email"] . "</td>                                                                                                                                                                                             
-                                                                <td>" . $row["roleID"] . "</td>                                                               
-                                                                <td><a class='btn btn-primary btn-sm' href='../admin/edit-user.php?id=$row[userID]'>Edit</a></td>
-                                                                <td><a class='btn btn-warning btn-sm' href='../admin/block-user.php?id=$row[userID]' onclick='return confirm('Are you sure you want to block this user?');'>Block</a></td>
-                                                                <td><a class='btn btn-danger btn-sm ' value='delete' href='../admin/delete-user.php?id=$row[userID]'>Delete</a></td>
-                                                            </tr>"; //still need to add the names for the roles
-                                                    }
-                                                    
-                                                    ?>
-                                                </tbody> 
-                                            </table>
-</div>
-<!-- Table for the posts -->
-                                            <div class= "container my-2">
-                                                <h2 class="display1-size d-block mb-2 text-grey-700 fw-500">Posts <a class="btn btn-primary" href="../admin/create-user.php">New post</a> </h2>
-                                            </div><br>
-<div class="table-responsive-sm">
-                                            <table class="table my-2 table-bordered table-dark table-hover">
-                                                <thead>
-                                                    <tr>
-                                                        <th>PostID</th>
-                                                        <th>Type</th>
-                                                        <th>Media</th>
-                                                        <th>UserID</th>
-                                                        <th>UserName</th>
-                                                        <th>Text</th>
-                                                        <th>Time</th>
-                                                        <th colspan="2">Manage</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                //<?php
-                                                    // read all row from database
-                                                    $sql = "SELECT * FROM Post";
-                                                    $result = $conn->query($sql);
-
-                                                    if (!$result){
-                                                        die("Invalid query: " . $conn->error);
-                                                    }
-
-                                                    //read data for each row
-                                                    while($row = $result->fetch_assoc())
-                                                    {
-                                                        echo"<tr>
-                                                                <td>" . $row["postID"] . "</td> 
-                                                                <td>" . $row["typeID"] . "</td>
-                                                                <td>" . $row["mediaID"] . "</td>
-                                                                <td>" . $row ["userID" ] . "</td> 
-                                                                <td>" . $row ["userName"] . "</td>                                                             
-                                                                <td>" . $row["text"] . "</td>                                                                                                                                                                                             
-                                                                <td>" . $row["timeStamp"]. "</td>                                                               
-                                                                <td><a class='btn btn-primary btn-sm' href='../admin/edit-user.php'>Edit</a></td>
-                                                                <td><a class='btn btn-danger btn-sm' href='../admin/delete-user.php'>Delete</a></td>
-                                                            </tr>"; 
-                                                    }?>
-                                                </tbody> 
-                                            </table>
-</div>
                                         </div>
                                     </div>  
                                 </div>
                             </div>
+
                         </div>               
+
                     </div>
-                </div>                
-            </div> 
-</section>          
+                </div>
+                 
+            </div>
+        </div>
+        <!-- main content -->
+
+
+
+            </div>
+        </div>
+    </div>
+    <script src="../js/plugin.js"></script>
+    <script src="../js/scripts.js"></script>
 
 </body>
 
