@@ -15,6 +15,7 @@ if (isset($_POST['update'])) {
     $origin = filter_input(INPUT_POST, 'origin', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
     $description = filter_input(INPUT_POST, 'description', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+    $postalCode = filter_input(INPUT_POST, 'role', FILTER_SANITIZE_NUMBER_INT);
 
     $sql = "UPDATE `User` SET `userName`='$userName', `firstName`='$firstName', `lastName`='$lastName', `email`='$email', `description`='$description', `postalCode`='$postalCode', `origin`='$origin' WHERE userID='$userID'";
     $edit = mysqli_query($conn, $sql);
@@ -97,15 +98,26 @@ include_once '../inc/header.php';
                                     </div>
                                 </div>
 
-                                    <div class="col-lg-12 mb-3">
-                                        <label class="mont-font fw-600 font-xsss">Description</label>
-                                        <input name="description" class="form-control mb-0 p-3" spellcheck="false" value="<?php echo $data['description']?>">
+                                    <div class="row">
+                                    <div class="col-lg-6 mb-3">
+                                        <div class="form-group">
+                                            <label class="mont-font fw-600 font-xsss">Description</label>
+                                            <input type="number" name="description" class="form-control" spellcheck="false" value="<?php echo $data['description']?>">
+                                        </div>        
                                     </div>
 
-                                    <div class="col-lg-12">
+                                    <div class="col-lg-6 mb-3">
+                                        <div class="form-group">
+                                            <label class="mont-font fw-600 font-xsss">Role</label>
+                                            <input type="text" name="roleID" class="form-control" value="<?php echo $data['roleID']?>">
+                                        </div>        
+                                    </div>
+
+                                    <div class="col-lg-6">
                                         <input name="update" type="submit" class="bg-current text-center text-white font-xsss fw-600 p-3 w175 rounded-3 d-inline-block" value="Update">
                                     </div>
                                 </div>
+                                
 
                             </form>
                             </div>

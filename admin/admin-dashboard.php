@@ -1,8 +1,20 @@
 <?php
 session_start();
 include_once '../config/userAuth.php';
-include_once '../inc/header.php'
 
+if(isset($_POST['delete'])) {
+    $query = "DELETE FROM `user` WHERE userID=['id']";
+    mysqli_query($connection, $query);
+
+    if ($delete) {
+        mysqli_close($conn);
+        header('Location: admin-dashboard.php');
+    } else {
+        echo mysqli_error($conn);
+    }
+}
+
+include_once '../inc/header.php';
 
 ?>
 
@@ -53,7 +65,7 @@ include_once '../inc/header.php'
                                             <table class="table my-2 table-bordered table-dark table-hover">
                                                 <thead>
                                                     <tr>
-                                                        <th>UserID</th>
+                                                        <th style="width:70%">UserID</th>
                                                         <th colspan="2">Name</th>
                                                         <th>Username</th>
                                                         <th>Email</th>
@@ -84,13 +96,10 @@ include_once '../inc/header.php'
                                                                 <td>" . $row["roleID"] . "</td>                                                               
                                                                 <td><a class='btn btn-primary btn-sm' href='../admin/edit-user.php?id=$row[userID];'>Edit</a></td>
                                                                 <td><a class='btn btn-warning btn-sm' href='../admin/block-user.php?id=$row[userID]; onclick='return confirm('Are you sure you want to block this user?');'>Block</a></td>
-                                                                <td><a class='btn btn-danger btn-sm ' onclick='return confirm('Are you sure you want to delete this user?');'>Delete</a></td>
+                                                                <td><a class='btn btn-danger btn-sm ' onclick='return confirm('Are you sure you want to delete this user?'); value='delete'>Delete</a></td>
                                                             </tr>"; //still need to add the names for the roles
                                                     }
-                                                    if(isset($_POST['delete'])) {
-                                                        $query = "DELETE FROM `user` WHERE ID=" .$_GET['id'];
-                                                        mysqli_query($connection, $query);
-                                                    }
+                                                    
                                                     ?>
                                                 </tbody> 
                                             </table>
@@ -114,7 +123,7 @@ include_once '../inc/header.php'
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                <?php
+                                                //<?php
                                                     // read all row from database
                                                     $sql = "SELECT * FROM Post";
                                                     $result = $conn->query($sql);
