@@ -1,10 +1,21 @@
 <?php
+$roleID = $_SESSION['roleid'];
+
+function showAdminButton ($roleId) {
+    if ($roleId == 2) {
+        $adminBtn = "<li><a href='default-analytics.html' class='nav-content-bttn open-font h-auto pt-2 pb-2'><i class='font-sm feather-database me-3 text-grey-500'></i><span>Admin</span></a></li>";
+        return $adminBtn;
+    } else {
+        return null;
+    }
+}
+
 if($_GET['logout']){logOut();}
 
 function logOut() {
     session_destroy();
 // Redirect to the login page:
-    header('Location: loginer.php');
+    header('Location: ../views/loginer.php');
 }
 
 ?>
@@ -157,7 +168,7 @@ function logOut() {
                         <ul class="mb-1">
                             <li class="logo d-none d-xl-block d-lg-block"></li>
                             <li><a href="../views/default-settings.php" class="nav-content-bttn open-font h-auto pt-2 pb-2"><i class="font-sm feather-settings me-3 text-grey-500"></i><span>Settings</span></a></li>
-                            <li><a href="default-analytics.html" class="nav-content-bttn open-font h-auto pt-2 pb-2"><i class="font-sm feather-database me-3 text-grey-500"></i><span>Admin</span></a></li>
+                            <?php echo showAdminButton($roleID)?>
                         </ul>
                     </div>
                 </div>

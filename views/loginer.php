@@ -7,7 +7,7 @@ $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_FULL_SPECIAL_CH
 $password_hashed = password_hash($password, PASSWORD_DEFAULT);
 
 if (isset($_POST['submit'])) {
-    if ($stmt = $conn->prepare('SELECT userID, password FROM `User` WHERE userName = ?')) {
+    if ($stmt = $conn->prepare('SELECT userID, password, roleID FROM `User` WHERE userName = ?')) {
         // Bind parameters (s = string, i = int, b = blob, etc), in our case the username is a string so we use "s"
         $stmt->bind_param('s', $userName);
         $stmt->execute();
@@ -15,7 +15,7 @@ if (isset($_POST['submit'])) {
         $stmt->store_result();
         var_dump($stmt);
         if ($stmt->num_rows > 0) {
-            $stmt->bind_result($userID, $password_hashed);
+            $stmt->bind_result($userID, $password_hashed, $roleID);
             $stmt->fetch();
             // Account exists, now we verify the password.
             // Note: remember to use password_hash in your registration file to store the hashed passwords.
@@ -27,6 +27,7 @@ if (isset($_POST['submit'])) {
                 $_SESSION['loggedin'] = TRUE;
                 $_SESSION['username'] = $userName;
                 $_SESSION['id'] = $userID;
+                $_SESSION['roleid'] = $roleID;
                 header('Location: default.php');
             } else {
                 // Incorrect password
