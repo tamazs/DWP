@@ -21,8 +21,11 @@ if (isset($_POST['postUpdate'])) {
 }
 
 if (isset($_POST['postDelete'])) {
-    $sqlDelete = "DELETE * FROM `Post` WHERE postID='$postID'";
-    $delete = mysqli_query($conn, $sqlDelete);
+    $sqlDelete = "DELETE * FROM `post_like` WHERE postID='$postID';";
+    $sqlDelete .= "DELETE * FROM `PostHasMedia` WHERE postID='$postID';";
+    $sqlDelete .= "DELETE * FROM `Post` WHERE postID='$postID'";
+
+    $delete = mysqli_multi_query($conn, $sqlDelete);
 
     if ($delete) {
         mysqli_close($conn);
