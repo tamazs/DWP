@@ -67,6 +67,7 @@ function getImageBy($postId) {
 
 function showEdit($postId, $userId) {
     $conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+    $roleId = $_SESSION['roleid'];
     if (isset($conn)) {
         $posteditQuery =
             "SELECT *
@@ -74,7 +75,7 @@ function showEdit($postId, $userId) {
                 WHERE postID=$postId
                 AND userID=$userId";
         $editResult = mysqli_query($conn, $posteditQuery) or die("database error:". mysqli_error($conn));
-        if($editResult->num_rows > 0){
+        if($editResult->num_rows > 0 || $roleId == 2){
            $editBtn = "<a style='text-decoration: none;' href='edit-post.php?id=" . $postId . "'>Edit</a>";
             return $editBtn;
         } else {

@@ -3,41 +3,9 @@ session_start();
 include_once '../config/conn.php';
 include_once '../config/userAuth.php';
 include_once '../config/adminAuth.php';
-
-if(isset($_POST['delete'])) {
-    $query = "DELETE * FROM `User` WHERE userID=['id']";
-    $delete = mysqli_query($conn, $query);
-
-    if ($delete) {
-        mysqli_close($conn);
-        header('Location: admin-dashboard.php');
-    } else {
-        echo mysqli_error($conn);
-    }
-}
-
 include_once '../inc/header.php';
 
 ?>
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>NewInDK</title>
-
-    <link rel="stylesheet" href="../css/themify-icons.css">
-    <link rel="stylesheet" href="../css/feather.css">
-    <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="../images/fav64.ico">
-    <!-- Custom Stylesheet -->
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/emoji.css">
-
-    <link rel="stylesheet" href="../css/lightbox.css">
-
-</head>
-
 <section class="dashboard">
             
             <div class="middle-sidebar-bottom">
@@ -95,7 +63,7 @@ include_once '../inc/header.php';
                                                                 <td>" . $row["roleID"] . "</td>                                                               
                                                                 <td><a class='btn btn-primary btn-sm' href='../admin/edit-user.php?id=$row[userID]'>Edit</a></td>
                                                                 <td><a class='btn btn-warning btn-sm' href='../admin/block-user.php?id=$row[userID]' onclick='return confirm('Are you sure you want to block this user?');'>Block</a></td>
-                                                                <td><a class='btn btn-danger btn-sm ' onclick='return confirm('Are you sure you want to delete this user?'); value='delete'>Delete</a></td>
+                                                                <td><a class='btn btn-danger btn-sm ' value='delete' href='../admin/delete-user.php?id=$row[userID]'>Delete</a></td>
                                                             </tr>"; //still need to add the names for the roles
                                                     }
                                                     
