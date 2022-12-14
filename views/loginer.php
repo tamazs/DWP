@@ -1,4 +1,5 @@
 <?php
+session_start();
 include_once '../config/conn.php';
 $userName = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
@@ -20,7 +21,6 @@ if (isset($_POST['submit'])) {
             // Account exists, now we verify the password.
             // Note: remember to use password_hash in your registration file to store the hashed passwords.
             if (password_verify($password, $password_hashed)) {
-                session_start();
                 // Verification success! User has logged-in!
                 // Create sessions, so we know the user is logged in, they basically act like cookies but remember the data on the server.
                 session_regenerate_id();

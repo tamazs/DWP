@@ -1,4 +1,5 @@
 <?php
+session_start();
 include_once '../config/conn.php';
 include_once '../config/adminAuth.php';
 include_once '../config/userAuth.php';
@@ -7,10 +8,13 @@ $userID = $_GET['id'];
 
 
 if(isset($userID)) {
-    $sqlDelete = "DELETE * FROM `post_like` WHERE userID='$userID';";
-    $sqlDelete .= "DELETE * FROM `Comment` WHERE userID='$userID';";
-    $sqlDelete .= "DELETE * FROM `Post` WHERE userID='$userID';";
-    $sqlDelete .= "DELETE * FROM `User` WHERE userID='$userID'";
+    $sqlDelete = "SET FOREIGN_KEY_CHECKS = 0;";
+    $sqlDelete .= "DELETE FROM `post_like` WHERE userID='$userID';";
+    $sqlDelete .= "DELETE FROM `Comment` WHERE userID='$userID';";
+    $sqlDelete .= "DELETE FROM `Post` WHERE userID='$userID';";
+    $sqlDelete .= "DELETE FROM `User` WHERE userID='$userID';";
+    $sqlDelete .= "SET FOREIGN_KEY_CHECKS = 1;";
+
 
     $delete = mysqli_multi_query($conn, $sqlDelete);
 

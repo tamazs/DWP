@@ -40,16 +40,12 @@ function logOut() {
 </head>
 
 <body class="color-theme-red mont-font">
-
-    <div class="preloader"></div>
-
-    
     <div class="main-wrapper">
 
         <!-- navigation top-->
         <div class="nav-header bg-white shadow-xs border-0 justify-content-between">
             <div class="nav-top d-flex justify-content-between">
-                <a href="default.php"><img src="../images/logo.png" class="me-2 ms-0" style="height: 70px";><span class="d-inline-block fredoka-font ls-3 fw-600 text-current font-xxl logo-text mb-0">NewIn.DK</span> </a>
+                <a href="../views/default.php"><img src="../images/logo.png" class="me-2 ms-0" style="height: 70px";><span class="d-inline-block fredoka-font ls-3 fw-600 text-current font-xxl logo-text mb-0">NewIn.DK</span> </a>
                 <button class="nav-menu me-0 ms-2"></button>
             </div>
             <div class="d-flex flex-row">

@@ -9,6 +9,7 @@ include_once '../config/reactionDAO.php';
 
     if (!empty($commentText)) {
         $postID=$_POST['postID'];
+        $commentText = filter_input(INPUT_POST, 'comment', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         $insertComments = "INSERT INTO `Comment` (typeID, postID, userID, content) VALUES ('2', '$postID', '$userID', '$commentText')";
         mysqli_query($conn, $insertComments) or die("database error: " . mysqli_error($conn));
         $message = '<label class="text-success">Comment posted Successfully.</label>';
