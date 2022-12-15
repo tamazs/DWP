@@ -1,7 +1,7 @@
 <?php
-
+session_start();
+include_once '../config/userAuth.php';
 include_once '../inc/header.php';
-
 ?>
         <!-- main content -->
         <div class="main-content right-chat-active">
@@ -10,101 +10,58 @@ include_once '../inc/header.php';
                 <div class="middle-sidebar-left">
                     <div class="row justify-content-center">
                         <div class="col-xl-10">
-                            <div class="card w-100 border-0 p-0 rounded-3 overflow-hidden bg-image-contain bg-image-center" style="background-image: url(https://via.placeholder.com/800x350.png);">
-                                <div class="card-body p-md-5 p-4 text-center" style="background-color:rgba(0,85,255,0.8)">
-                                    <h2 class="fw-700 display2-size text-white display2-md-size lh-2">Welcome to the Sociala Commuinity!</h2>
-                                    <p class="font-xsss ps-lg-5 pe-lg-5 lh-28 text-grey-200">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nulla dolor, ornare at commodo non, feugiat non nisi. Phasellus faucibus mollis pharetra. Proin blandit ac massa sed rhoncus </p>
-                                </div>
-                            </div>
-                            <div class="card w-100 border-0 shadow-none bg-transparent mt-5">
+                              <div class="card-body p-md-5 p-4 text-center" style="background-color:red">
+                                  <h2 class="fw-700 display2-size text-white display2-md-size lh-2">Welcome to the NewInDk Commuinity!</h2>
+                                  <p class="font-xss ps-lg-5 pe-lg-5 lh-28 text-grey-200">Here you can get something out from our pre-generated answers that could help if you formulated any questions in yourself.</p>
+                              </div>
+                            <div class="card w-100 border-0 shadow-none bg-transparent mt-3">
                                 <div id="accordion" class="accordion mb-0">
-                                  <div class="card shadow-xss">
-                                    <div class="card-header" id="headingOne">
-                                      <h5 class="mb-0">
-                                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-                                          I have read and agree to the Privacy Policy and Terms & Conditions*
+                                  <div class=" accordion shadow-xss">
+                                    <div class="accordion-item card-header" id="headingOne">
+                                      <h3 class="accordion-header mb-0">
+                                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                                        Please read these Terms of Service carefully before using the NewInDK website
                                         </button>
-                                      </h5>
+                                      </h3>
                                     </div>
+                                    <div id="collapseOne" class="accordion-collapse" aria-labelledby="headingOne" data-bs-parent="#accordion">
+                                      <div class="card-body">
+                                        <p>Your access to and use of the Service is conditioned on your acceptance of and compliance with these Terms. These Terms apply to all visitors, users and others who access or use the Service.
+                                           By accessing or using the Service you agree to be bound by these Terms. If you disagree with any part of the Terms then you may not access the Service.
+                                           We may terminate or suspend access to our Service immediately, without prior notice or liability, for any reason whatsoever, including without limitation if you breach the Terms.
+                                           All provisions of the Terms which by their nature should survive termination shall survive termination, including, without limitation, ownership provisions, warranty disclaimers, indemnity and limitations of liability.
+                                        </p>
+                                      </div>
+                                    </div>
+                                  </div>
 
-                                    <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                                  <div class=" accordion shadow-xss">
+                                    <div class="accordion-item card-header" id="headingTwo">
+                                      <h3 class="accordion-header mb-0">
+                                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                        Guidelines for Using Social Media
+                                        </button>
+                                      </h3>
+                                    </div>
+                                    <div id="collapseTwo" class="accordion-collapse" aria-labelledby="headingTwo" data-bs-parent="#accordion">
                                       <div class="card-body">
-                                        <p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.</p>
+                                        <h4>Be smart</h4>
+                                        <p>Think before you post and remember there is no such thing as a "private" social media site. It's best to avoid sharing personal information.</p>
+                                        <h4>Be aware</h4>
+                                        <p>You should restrict personal social media usage to your own time.</p>
+                                        <h4>Be responsible</h4>
+                                        <p>Do not post sensitive, confidential or proprietary information. Be sure to follow NewInDK policies regarding privacy.</p>
+                                        <h4>Be respectful</h4>
+                                        <p>Do not post unauthorized commercial solicitations (such as spam); bully, intimidate, or harass any user; post content that is hateful, threatening, pornographic, or that contains nudity or graphic or gratuitous violence; or do anything unlawful, misleading, malicious, or discriminatory. If the content of your message would not be acceptable for face-to-face conversation, over the telephone, or in another medium, it will not be acceptable for a social media site.</p>
+                                        <h4>Be original</h4>
+                                        <p>Maintain copyright and fair use laws and cite sources when possible. Don't plagiarize.</p>
+                                        <h4>Be responsive</h4>
+                                        <p>Refer news media (newspapers, radio stations, television reporters, etc.) in connection with the newcomers.If someone asks a question on a matter that can't be answered by you, refer them to the proper unit or person.</p>
+                                        <h4>Be concise</h4>
+                                        <p>Most social media platforms are built to be brief and more informal.</p>
                                       </div>
                                     </div>
                                   </div>
-                                  <div class="card shadow-xss">
-                                    <div class="card-header" id="headingTwo">
-                                      <h5 class="mb-0">
-                                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                          You can easily build a page without any design or custom coding.
-                                        </button>
-                                      </h5>
-                                    </div>
-                                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
-                                      <div class="card-body">
-                                        <p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.</p>
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <div class="card shadow-xss">
-                                    <div class="card-header" id="headingFour">
-                                      <h5 class="mb-0">
-                                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                                          I have read and agree to the Privacy Policy and Terms & Conditions*
-                                        </button>
-                                      </h5>
-                                    </div>
-
-                                    <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
-                                      <div class="card-body">
-                                        <p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.</p>
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <div class="card shadow-xss">
-                                    <div class="card-header" id="headingFive">
-                                      <h5 class="mb-0">
-                                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-                                          I have read and agree to the Privacy Policy and Terms & Conditions*
-                                        </button>
-                                      </h5>
-                                    </div>
-
-                                    <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordion">
-                                      <div class="card-body">
-                                        <p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.</p>
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <div class="card shadow-xss">
-                                    <div class="card-header" id="headingSix">
-                                      <h5 class="mb-0">
-                                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
-                                          I have read and agree to the Privacy Policy and Terms & Conditions*
-                                        </button>
-                                      </h5>
-                                    </div>
-
-                                    <div id="collapseSix" class="collapse" aria-labelledby="headingSix" data-parent="#accordion">
-                                      <div class="card-body">
-                                        <p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.</p>
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <div class="card shadow-xss">
-                                    <div class="card-header" id="headingThree">
-                                      <h5 class="mb-0">
-                                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                          Stream that converts more visitors than any website.
-                                        </button>
-                                      </h5>
-                                    </div>
-                                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
-                                      <div class="card-body">
-                                        <p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.</p>
-                                      </div>
-                                    </div>
                                   </div>
                                 </div>
                             </div>

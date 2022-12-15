@@ -76,8 +76,8 @@ if (isset($_POST['submit'])) {
         </div>
     </div>
     <div class="card-body d-flex justify-content-between p-0 mt-2">
-        <div><input type="file" name="upload"><i class="font-md text-success feather-image me-2"></i><span class="d-none-xs">Photo</span></div>
+        <input type="file" name="upload">
         <?php echo $message ?? null; ?>
-        <input type="submit" class="col-12 bg-current text-center text-white font-xsss fw-600 p-3 w175 rounded-3 d-inline-block" name="submit" value="Send">
+        <input type="submit" class="col-12 bg-current text-center text-white font-xsss fw-600 p-3 w-25 rounded-3 d-inline-block" name="submit" value="Send">
     </div>
 </form>

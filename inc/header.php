@@ -1,10 +1,21 @@
 <?php
+$roleID = $_SESSION['roleid'];
+
+function showAdminButton ($roleId) {
+    if ($roleId == 2) {
+        $adminBtn = "<li><a href='../admin/admin-dashboard.php' class='nav-content-bttn open-font h-auto pt-2 pb-2'><i class='font-sm feather-database me-3 text-grey-500'></i><span>Admin</span></a></li>";
+        return $adminBtn;
+    } else {
+        return null;
+    }
+}
+
 if($_GET['logout']){logOut();}
 
 function logOut() {
     session_destroy();
 // Redirect to the login page:
-    header('Location: loginer.php');
+    header('Location: ../views/loginer.php');
 }
 
 ?>
@@ -19,7 +30,7 @@ function logOut() {
     <link rel="stylesheet" href="../css/themify-icons.css">
     <link rel="stylesheet" href="../css/feather.css">
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="../images/fav64.ico">
+    <link rel="icon" type="image/png" href="../images/64x64_white.png">
     <!-- Custom Stylesheet -->
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/emoji.css">
@@ -29,16 +40,12 @@ function logOut() {
 </head>
 
 <body class="color-theme-red mont-font">
-
-    <div class="preloader"></div>
-
-    
     <div class="main-wrapper">
 
         <!-- navigation top-->
         <div class="nav-header bg-white shadow-xs border-0 justify-content-between">
             <div class="nav-top d-flex justify-content-between">
-                <a href="default.php"><img src="../images/logo.png" class="me-2 ms-0" style="height: 70px";><span class="d-inline-block fredoka-font ls-3 fw-600 text-current font-xxl logo-text mb-0">NewIn.DK</span> </a>
+                <a href="../views/default.php"><img src="../images/logo.png" class="me-2 ms-0" style="height: 70px";><span class="d-inline-block fredoka-font ls-3 fw-600 text-current font-xxl logo-text mb-0">NewInDK</span> </a>
                 <button class="nav-menu me-0 ms-2"></button>
             </div>
             <div class="d-flex flex-row">
@@ -157,7 +164,7 @@ function logOut() {
                         <ul class="mb-1">
                             <li class="logo d-none d-xl-block d-lg-block"></li>
                             <li><a href="../views/default-settings.php" class="nav-content-bttn open-font h-auto pt-2 pb-2"><i class="font-sm feather-settings me-3 text-grey-500"></i><span>Settings</span></a></li>
-                            <li><a href="default-analytics.html" class="nav-content-bttn open-font h-auto pt-2 pb-2"><i class="font-sm feather-database me-3 text-grey-500"></i><span>Admin</span></a></li>
+                            <?php echo showAdminButton($roleID)?>
                         </ul>
                     </div>
                 </div>

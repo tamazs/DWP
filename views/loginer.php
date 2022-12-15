@@ -1,4 +1,5 @@
 <?php
+session_start();
 include_once '../config/conn.php';
 $userName = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
@@ -7,26 +8,25 @@ $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_FULL_SPECIAL_CH
 $password_hashed = password_hash($password, PASSWORD_DEFAULT);
 
 if (isset($_POST['submit'])) {
-    if ($stmt = $conn->prepare('SELECT userID, password FROM `User` WHERE userName = ?')) {
+    if ($stmt = $conn->prepare('SELECT userID, password, roleID FROM `User` WHERE userName = ?')) {
         // Bind parameters (s = string, i = int, b = blob, etc), in our case the username is a string so we use "s"
         $stmt->bind_param('s', $userName);
         $stmt->execute();
         // Store the result so we can check if the account exists in the database.
         $stmt->store_result();
-        var_dump($stmt);
         if ($stmt->num_rows > 0) {
-            $stmt->bind_result($userID, $password_hashed);
+            $stmt->bind_result($userID, $password_hashed, $roleID);
             $stmt->fetch();
             // Account exists, now we verify the password.
             // Note: remember to use password_hash in your registration file to store the hashed passwords.
             if (password_verify($password, $password_hashed)) {
-                session_start();
                 // Verification success! User has logged-in!
                 // Create sessions, so we know the user is logged in, they basically act like cookies but remember the data on the server.
                 session_regenerate_id();
                 $_SESSION['loggedin'] = TRUE;
                 $_SESSION['username'] = $userName;
                 $_SESSION['id'] = $userID;
+                $_SESSION['roleid'] = $roleID;
                 header('Location: default.php');
             } else {
                 // Incorrect password
@@ -45,7 +45,7 @@ include_once '../inc/header_login.php';
 
 
 <div class="row">
-    <div class="col-xl-5 d-none d-xl-block p-0 vh-100 bg-image-cover bg-no-repeat" style="background-image: url(https://via.placeholder.com/800x950.png);"></div>
+    <div class="col-xl-5 d-none d-xl-block p-0 vh-100 bg-image-cover bg-no-repeat" style="background-image: url('../images/4es.jpg');"></div>
     <div class="col-xl-7 vh-100 align-items-center d-flex bg-white rounded-3 overflow-hidden">
         <div class="card shadow-none border-0 ms-auto me-auto login-card">
             <div class="card-body rounded-0 text-left">

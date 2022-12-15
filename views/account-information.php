@@ -25,6 +25,24 @@ if (isset($_POST['update'])) {
         echo mysqli_error($conn);
     }
 }
+
+if (isset($_POST['delete'])) {
+    $sqlDelete = "SET FOREIGN_KEY_CHECKS = 0;";
+    $sqlDelete .= "DELETE FROM `post_like` WHERE userID='$userID';";
+    $sqlDelete .= "DELETE FROM `Comment` WHERE userID='$userID';";
+    $sqlDelete .= "DELETE FROM `Post` WHERE userID='$userID';";
+    $sqlDelete .= "DELETE FROM `User` WHERE userID='$userID';";
+    $sqlDelete .= "SET FOREIGN_KEY_CHECKS = 1;";
+
+    $delete = mysqli_multi_query($conn, $sqlDelete);
+
+    if ($delete) {
+        mysqli_close($conn);
+        header('Location: register.php');
+    } else {
+        echo mysqli_error($conn);
+    }
+}
 include_once '../inc/header.php';
 ?>
         <!-- main content -->
@@ -101,8 +119,11 @@ include_once '../inc/header.php';
                                     </div>
 
                                     <div class="col-lg-12">
-                                        <input name="update" type="submit" class="bg-current text-center text-white font-xsss fw-600 p-3 w175 rounded-3 d-inline-block" value="Update">
+                                        <input name="update" type="submit" class="bg-current text-center text-white font-xsss fw-600 p-3 w175 rounded-3 d-inline-block" value="Update account">
                                     </div>
+                                <div class="col-lg-12">
+                                    <input name="delete" type="submit" class="bg-current text-center text-white font-xsss fw-600 p-3 w175 rounded-3 d-inline-block" value="Delete account">
+                                </div>
                                 </div>
 
                             </form>

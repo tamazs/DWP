@@ -9,6 +9,7 @@ include_once '../config/reactionDAO.php';
 
     if (!empty($commentText)) {
         $postID=$_POST['postID'];
+        $commentText = filter_input(INPUT_POST, 'comment', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         $insertComments = "INSERT INTO `Comment` (typeID, postID, userID, content) VALUES ('2', '$postID', '$userID', '$commentText')";
         mysqli_query($conn, $insertComments) or die("database error: " . mysqli_error($conn));
         $message = '<label class="text-success">Comment posted Successfully.</label>';
@@ -67,6 +68,7 @@ function getImageBy($postId) {
 
 function showEdit($postId, $userId) {
     $conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+    $roleId = $_SESSION['roleid'];
     if (isset($conn)) {
         $posteditQuery =
             "SELECT *
@@ -74,7 +76,7 @@ function showEdit($postId, $userId) {
                 WHERE postID=$postId
                 AND userID=$userId";
         $editResult = mysqli_query($conn, $posteditQuery) or die("database error:". mysqli_error($conn));
-        if($editResult->num_rows > 0){
+        if($editResult->num_rows > 0 || $roleId == 2){
            $editBtn = "<a style='text-decoration: none;' href='edit-post.php?id=" . $postId . "'>Edit</a>";
             return $editBtn;
         } else {

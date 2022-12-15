@@ -3,6 +3,7 @@ include_once '../config/conn.php';
 $text =  '';
 $textErr = '';
 $userName = $_SESSION['username'];
+$userID = $_SESSION['id'];
 
 //Form submit
 if (isset($_POST['submit'])) {
@@ -27,7 +28,10 @@ if (isset($_POST['submit'])) {
         //Validate file ext
         if (in_array($file_ext, $allowed_ext)) {
             if ($file_size <= 1000000) {
-                move_uploaded_file($file_tmp, $target_dir);
+                $imgContent = addslashes(file_get_contents($file_tmp));
+
+                $conn->query("INSERT into Media (image, created) VALUES ('$imgContent', NOW())");
+                $insertedMediaId = mysqli_insert_id($conn);
 
                 $message = '<p style="color: green;">File uploaded</p>';
             } else {
@@ -40,16 +44,24 @@ if (isset($_POST['submit'])) {
     }
 
     if (empty($textErr)) {
-        $sql = "INSERT INTO Post (text, typeID, userName) VALUES ('$text', '3', '$userName')";
-        if (mysqli_query($conn, $sql)) {
+        $conn->query("INSERT INTO Post (text, typeID, userName, userID) VALUES ('$text', '3', '$userName', '$userID')");
+        $insertedPostId = mysqli_insert_id($conn);
+
+        /* if (mysqli_query($conn, $sql)) {
+
             //Success
-            header('Location: qna.php');
+            // header('Location: default.php');
         } else {
             //Error
             echo 'Error: ' . mysqli_error($conn);
-        }
+        } */
 
     }
+
+    if (isset($insertedMediaId, $insertedPostId)) {
+        $conn->query("INSERT INTO PostHasMedia (mediaID, postID) VALUES ($insertedMediaId, $insertedPostId)");
+    }
+    //
 
 }
 
@@ -63,9 +75,9 @@ if (isset($_POST['submit'])) {
             Please write something.
         </div>
     </div>
-    <div class="card-body d-flex p-0 mt-0">
-        <input type="file" name="upload" ><i class="font-md text-success feather-image me-2"></i><span class="d-none-xs">Photo/Video</span>
+    <div class="card-body d-flex justify-content-between p-0 mt-2">
+        <input type="file" name="upload">
         <?php echo $message ?? null; ?>
-        <input type="submit" name="submit" value="Send">
+        <input type="submit" class="col-12 bg-current text-center text-white font-xsss fw-600 p-3 w-25 rounded-3 d-inline-block" name="submit" value="Send">
     </div>
 </form>
