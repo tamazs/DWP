@@ -30,7 +30,7 @@ function logOut() {
     <link rel="stylesheet" href="../css/themify-icons.css">
     <link rel="stylesheet" href="../css/feather.css">
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="../images/fav64.ico">
+    <link rel="icon" type="image/png" href="../images/fav64.ico">
     <!-- Custom Stylesheet -->
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/emoji.css">

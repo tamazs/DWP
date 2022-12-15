@@ -14,7 +14,6 @@ if (isset($_POST['submit'])) {
         $stmt->execute();
         // Store the result so we can check if the account exists in the database.
         $stmt->store_result();
-        var_dump($stmt);
         if ($stmt->num_rows > 0) {
             $stmt->bind_result($userID, $password_hashed, $roleID);
             $stmt->fetch();
