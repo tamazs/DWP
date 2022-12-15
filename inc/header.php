@@ -30,7 +30,7 @@ function logOut() {
     <link rel="stylesheet" href="../css/themify-icons.css">
     <link rel="stylesheet" href="../css/feather.css">
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" href="../images/fav64.ico">
+    <link rel="icon" type="image/png" href="../images/64x64_white.png">
     <!-- Custom Stylesheet -->
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/emoji.css">
@@ -45,7 +45,7 @@ function logOut() {
         <!-- navigation top-->
         <div class="nav-header bg-white shadow-xs border-0 justify-content-between">
             <div class="nav-top d-flex justify-content-between">
-                <a href="../views/default.php"><img src="../images/logo.png" class="me-2 ms-0" style="height: 70px";><span class="d-inline-block fredoka-font ls-3 fw-600 text-current font-xxl logo-text mb-0">NewIn.DK</span> </a>
+                <a href="../views/default.php"><img src="../images/logo.png" class="me-2 ms-0" style="height: 70px";><span class="d-inline-block fredoka-font ls-3 fw-600 text-current font-xxl logo-text mb-0">NewInDK</span> </a>
                 <button class="nav-menu me-0 ms-2"></button>
             </div>
             <div class="d-flex flex-row">

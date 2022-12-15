@@ -45,7 +45,7 @@ include_once '../inc/header_login.php';
 
 
 <div class="row">
-    <div class="col-xl-5 d-none d-xl-block p-0 vh-100 bg-image-cover bg-no-repeat" style="background-image: url(https://via.placeholder.com/800x950.png);"></div>
+    <div class="col-xl-5 d-none d-xl-block p-0 vh-100 bg-image-cover bg-no-repeat" style="background-image: url('../images/4es.jpg');"></div>
     <div class="col-xl-7 vh-100 align-items-center d-flex bg-white rounded-3 overflow-hidden">
         <div class="card shadow-none border-0 ms-auto me-auto login-card">
             <div class="card-body rounded-0 text-left">
